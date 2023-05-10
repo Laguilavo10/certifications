@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FrameIcon } from './components/icons'
+import { FrameImage } from './components/FrameImage'
 
 export default async function Home() {
   const getImages = async () => {
@@ -29,7 +29,7 @@ export default async function Home() {
             <article
               className='rounded-mdshadow-md relative flex h-[280px] w-full flex-col items-center justify-center md:h-[300px]'
               key={image.public_id}>
-              <FrameIcon>
+              <FrameImage>
                 <Image
                   src={image.url}
                   width={500}
@@ -37,7 +37,7 @@ export default async function Home() {
                   alt={`diploma ${image.filename}`}
                   className='aspect-[4/3] h-full w-full '
                 />
-              </FrameIcon>
+              </FrameImage>
             </article>
           ))}
         </div>
