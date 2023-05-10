@@ -35,7 +35,7 @@ export default async function Home() {
                   width={500}
                   height={500}
                   alt={`diploma ${image.filename}`}
-                  className='aspect-[4/3] h-full w-full '
+                  className='aspect-[4/3] h-full w-full'
                 />
               </FrameImage>
             </article>

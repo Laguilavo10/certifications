@@ -2,8 +2,8 @@ import { PropsWithChildren } from 'react'
 
 export const FrameImage = (props: PropsWithChildren) => {
   return (
-    <div className='flex relative box-border h-full w-[370px] cursor-pointer rounded-md border-[7px] border-black bg-[#B27B39] transition-all duration-300 ease-in-out md:hover:scale-110'>
-      <div className='m-auto my-6 h-5/6 w-5/6 rounded-md border-[7px] border-black bg-white'>
+    <div className='flex relative box-border h-full w-[370px] cursor-pointer rounded-md border-[7px] border-black bg-[#B27B39]  '>
+      <div className='m-auto my-6 h-5/6 w-5/6 rounded-md border-[7px] border-black hover:scale-110 transition-all duration-300 ease-in-out z-10'>
         {props.children}
       </div>
 
