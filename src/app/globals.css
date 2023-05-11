@@ -2,14 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
-  /* outline: 1px solid tomato; */
-}
 
-.bg-image{
+.bg-image {
   background-image: url(assets/pared.jpg);
   background-size: 200px;
+}
+
+/* estilos que sobreescriben los de la libreria react- */
+[data-rmiz-modal-content] {
+  background-color: black;
+}
+[data-rmiz] {
+  height: 100% !important;
+}
+[data-rmiz-content='found'] {
+  height: 100% !important;
 }
