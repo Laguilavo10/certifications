@@ -12,10 +12,10 @@ export const FrameImage = (props: PropsWithChildren) => {
       <span className='absolute -bottom-[11px] left-[13px] flex h-12 w-[4px] rotate-[230deg] rounded-md bg-black ' />
 
 
-      <span className='absolute top-[11px] right-[40px] flex h-[3px] w-[260px] rounded-md bg-white blur-md' />
-      <span className='absolute bottom-[11px] right-[40px] flex h-[3px] w-[260px] rounded-md bg-white blur-md' />
-      <span className='absolute top-[40px] right-[11px] flex h-[220px] w-[3px] rounded-md bg-white blur-md' />
-      <span className='absolute top-[40px] left-[11px] flex h-[220px] w-[3px] rounded-md bg-white blur-md' />
+      <span className='absolute top-[11px] right-[40px] flex h-[3px] w-[260px] rounded-md bg-[#f0cc9f] blur-md' />
+      <span className='absolute bottom-[11px] right-[40px] flex h-[3px] w-[260px] rounded-md bg-[#f0cc9f] blur-md' />
+      <span className='absolute top-[40px] right-[11px] flex h-[200px] w-[3px] rounded-md bg-[#f0cc9f] blur-md' />
+      <span className='absolute top-[40px] left-[11px] flex h-[200px] w-[3px] rounded-md bg-[#f0cc9f] blur-md' />
 
       <span className='absolute -top-[56px] left-[160px] flex h-16 w-[4px] rotate-[45deg] rounded-md bg-black' />
       <span className='absolute -top-[56px] right-[154px] flex h-16 w-[4px] rotate-[135deg] rounded-md bg-black' />
