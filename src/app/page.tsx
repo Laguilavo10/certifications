@@ -17,8 +17,8 @@ export default async function Home() {
                 <ImageZoom>
                   <Image
                     src={image.url}
-                    width={500}
-                    height={500}
+                    width={800}
+                    height={800}
                     alt={`diploma ${image.filename}`}
                     className='aspect-[4/3] h-full w-full'
                   />
