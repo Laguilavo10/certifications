@@ -2,9 +2,12 @@
 import { useState } from 'react'
 
 const tabs: string[] = ['Todos', 'SENA', 'Platzi', 'Otros']
-
-export default function Tabs() {
-  const [value, setValue] = useState('Todos')
+interface Props {
+  value: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
+}
+export default function Tabs({ value, setValue }: Props) {
+  // const [value, setValue] = useState('Todos')
   const selectTab = (evt: React.MouseEvent<HTMLButtonElement>) => {
     const {
       currentTarget: { id }
