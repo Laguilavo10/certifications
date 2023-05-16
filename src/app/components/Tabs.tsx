@@ -1,5 +1,4 @@
 'use client'
-import { TabList, Tab } from '@tremor/react'
 import { useState } from 'react'
 
 const tabs: string[] = ['Todos', 'SENA', 'Platzi', 'Otros']
