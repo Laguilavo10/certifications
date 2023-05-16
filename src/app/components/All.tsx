@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import Certifications from './Certifications'
 import Tabs from './Tabs'
 
@@ -7,34 +7,33 @@ interface Props {
   resources: any
 }
 
+interface Action {
+  type: string
+}
+
 export default function All({ resources }: Props) {
-  const [tab, setTabs] = useState('Todos')
-  const [data, setData] = useState(resources)
-  const dataByTab = () => {
-    switch (tab) {
-      case 'Todos':
-        setData(resources)
-        return data
+  const reducer = (state: any, action: Action) => {
+    switch (action.type) {
       case 'SENA':
-        const dataSena = resources.filter((img : any)=>(img.folder.includes('SENA')))
-        setData(dataSena)
-        break
+        const dataSena = resources.filter((img: any) =>
+          img.folder.includes('SENA')
+        )
+        return dataSena
       case 'Platzi':
-        const dataPlatzi = resources.filter((img : any)=>(img.folder.includes('Platzi')))
-        setData(dataPlatzi)
-        break
-      case 'Otros':
-        setData(resources)
-        return data
+        const dataPlatzi = resources.filter((img: any) =>
+          img.folder.includes('Platzi')
+        )
+        return dataPlatzi
       default:
-        break
+        return resources
     }
   }
+  const [tab, setTabs] = useState('Todos')
+  const [state, dispatch] = useReducer(reducer, resources)
   useEffect(() => {
-    dataByTab()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch({ type: tab })
   }, [tab])
-  
+
   return (
     <>
       <div className='relative h-48 bg-slate-400'>
@@ -43,7 +42,7 @@ export default function All({ resources }: Props) {
         </div>
       </div>
       <section className='bg-image py-20'>
-        <Certifications resources={data} />
+        <Certifications resources={state} />
       </section>
     </>
   )

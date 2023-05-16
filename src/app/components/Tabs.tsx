@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-const tabs: string[] = ['Todos', 'SENA', 'Platzi', 'Otros']
+const tabs: string[] = ['Todos', 'SENA', 'Platzi']
 interface Props {
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
