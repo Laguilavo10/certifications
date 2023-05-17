@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 export const FrameImage = (props: PropsWithChildren) => {
   return (
     <div className='relative box-border flex h-full w-[370px] rounded-md border-[4px] border-black bg-[#3d270b]  '>
-      <div className=' z-10 m-auto my-6 h-5/6 w-5/6 justify-center rounded-md border-[4px] border-black transition-all duration-300 ease-in-out hover:scale-110'>
+      <div className='z-10 m-auto my-6 h-5/6 w-5/6 justify-center rounded-md border-[4px] border-black transition-all duration-300 ease-in-out sm:hover:scale-110'>
         {props.children}
       </div>
       <span className='absolute -top-[11px] left-[13px] flex h-[46px] w-[4px] rotate-[130deg] rounded-md bg-black ' />

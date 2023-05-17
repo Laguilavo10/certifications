@@ -16,7 +16,7 @@ export default function Tabs({ value, setValue }: Props) {
     setValue(id)
   }
   return (
-    <ul className='m-auto flex w-3/6 justify-evenly rounded-lg bg-white p-3 text-left shadow-2xl ring-1 ring-gray-200'>
+    <ul className='m-auto flex w-3/6 justify-evenly rounded-lg bg-white p-3 text-left shadow-2xl ring-1 ring-gray-200 min-w-[300px]'>
       {tabs.map((tab) => (
         <li key={tab}>
           <button
