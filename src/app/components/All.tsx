@@ -2,6 +2,7 @@
 import { useEffect, useReducer, useState } from 'react'
 import Certifications from './Certifications'
 import Tabs from './Tabs'
+import { PaginatedItems } from './PaginatedItems'
 
 interface Props {
   resources: any
@@ -30,10 +31,10 @@ export default function All({ resources }: Props) {
   }
   const [tab, setTabs] = useState('Todos')
   const [state, dispatch] = useReducer(reducer, resources)
+  const [currentItems, setCurrentItems] = useState(state)
   useEffect(() => {
     dispatch({ type: tab })
   }, [tab])
-
   return (
     <>
       <div className='relative h-48 bg-slate-400'>
@@ -45,7 +46,13 @@ export default function All({ resources }: Props) {
         </div>
       </div>
       <section className='bg-image py-20'>
-        <Certifications resources={state} />
+        <Certifications resources={currentItems} />
+        <PaginatedItems
+          itemsPerPage={12}
+          data={state}
+          tab={tab}
+          setCurrentItems={setCurrentItems}
+        />
       </section>
     </>
   )
