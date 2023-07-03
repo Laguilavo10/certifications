@@ -25,6 +25,11 @@ export default function All({ resources }: Props) {
           img.folder.includes('Platzi')
         )
         return dataPlatzi
+      case 'Others':
+        const dataOthers = resources.filter((img: any) =>
+          img.folder.includes('Otros')
+        )
+        return dataOthers
       default:
         return resources
     }
