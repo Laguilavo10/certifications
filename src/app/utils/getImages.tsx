@@ -8,7 +8,10 @@ export const getImages = async () => {
         `${process.env.API_KEY}:${process.env.API_SECRET}`
       ).toString('base64')})}`
     },
-    body: JSON.stringify({ expression: 'folder=Certifications/*' })
+    body: JSON.stringify({ expression: 'folder=Certifications/*' }),
+    next : {
+      revalidate: 60
+    }
   }
   const data = await fetch(process.env.URL_API as string, options)
   const images = await data.json()
