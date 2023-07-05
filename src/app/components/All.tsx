@@ -42,8 +42,8 @@ export default function All({ resources }: Props) {
   }, [tab])
   return (
     <>
-      <div className='relative h-48 bg-slate-400'>
-        <h1 className='flex h-full items-center justify-center text-center text-4xl font-bold tracking-wider sm:text-7xl'>
+      <div className='relative h-48 bg-[#090e16]'>
+        <h1 className='flex h-full items-center justify-center bg-gradient-to-r from-orange-600 to-[#a6a8b0] bg-clip-text text-center text-4xl  font-bold uppercase tracking-wider text-transparent sm:text-7xl'>
           Certificados
         </h1>
         <div className='absolute -bottom-7 w-full '>

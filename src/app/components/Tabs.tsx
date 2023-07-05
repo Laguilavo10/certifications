@@ -16,7 +16,7 @@ export default function Tabs({ value, setValue }: Props) {
     setValue(id)
   }
   return (
-    <ul className='m-auto flex w-3/6 justify-evenly rounded-lg bg-white p-3 text-left shadow-2xl ring-1 ring-gray-200 min-w-[300px]'>
+    <ul className='m-auto flex w-3/6 justify-evenly rounded-lg bg-[#d8d9dc] p-3 text-left shadow-2xl ring-1 ring-gray-200 min-w-[300px] drop-shadow-[5px_5px_100px_rgba(255,255,255,.3)]'>
       {tabs.map((tab) => (
         <li key={tab}>
           <button
@@ -24,8 +24,8 @@ export default function Tabs({ value, setValue }: Props) {
             id={tab}
             className={`border-b-2 border-transparent text-xl font-medium  ${
               value === tab
-                ? 'border-b-blue-500 text-blue-500'
-                : 'text-gray-400 hover:text-gray-500'
+                ? 'border-b-orange-700 text-orange-700'
+                : 'text-gray-600 hover:text-gray-500'
             }`}>
             {tab}
           </button>

@@ -14,7 +14,9 @@ export default function Certifications({ resources }: Props) {
           className='relative flex h-[280px] w-full flex-col items-center justify-center rounded-md shadow-md md:h-[300px]'
           key={image.public_id}>
           <FrameImage
-            aspectImage={image.aspect_ratio > 1 ? 'horizontal' : 'vertical'}>
+            aspectImage={image.aspect_ratio > 1 ? 'horizontal' : 'vertical'}
+            titleCertification={image.filename}
+            >
             <ImageZoom>
               <LoadingSkeleton>
                 <Image
@@ -22,7 +24,7 @@ export default function Certifications({ resources }: Props) {
                   width={1000}
                   height={1000}
                   alt={`diploma ${image.filename}`}
-                  className='h-full w-full'
+                  className='h-full w-full cursor-pointer'
                 />
               </LoadingSkeleton>
             </ImageZoom>

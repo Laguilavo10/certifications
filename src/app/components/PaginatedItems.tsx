@@ -42,16 +42,16 @@ export function PaginatedItems({ itemsPerPage, data, setCurrentItems, tab }: Pro
           pageCount={pageCount}
           previousLabel='< Anterior'
           pageClassName='border border-slate-400  rounded cursor-pointer'
-          pageLinkClassName='flex w-full h-full py-1 px-3'
+          pageLinkClassName='flex w-full h-full py-1 px-3  items-center'
           previousClassName='border border-slate-400 rounded'
-          previousLinkClassName='flex w-full h-full p-1'
+          previousLinkClassName='flex w-full h-full p-1 text-sm'
           nextClassName='border border-slate-400 rounded'
-          nextLinkClassName='flex w-full h-full p-1'
+          nextLinkClassName='flex w-full h-full p-1 text-sm'
           breakLabel='...'
           breakClassName='page-item'
           breakLinkClassName='page-link'
           containerClassName='bg-white flex p-2 m-auto max-w-fit rounded-md gap-3 bg-opacity-80 shadow-2xl'
-          activeClassName='bg-blue-500'
+          activeClassName='bg-orange-400'
           renderOnZeroPageCount={null}
         />
       )}
