@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <link rel='shortcut icon' href='/public/diploma.svg' type='image/x-icon'/>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className + 'w-full h-full bg-image'}>{children}</body>
     </html>
   )
 }

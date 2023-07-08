@@ -12,6 +12,14 @@
 [data-rmiz-modal-content] {
   background-color: black;
   min-height: 100vh;
+  height: 100%;
+  min-width: 100vw;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 [data-rmiz] {
   height: 100% !important;

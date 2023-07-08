@@ -50,7 +50,7 @@ export default function All({ resources }: Props) {
           <Tabs value={tab} setValue={setTabs} />
         </div>
       </div>
-      <section className='bg-image py-20'>
+      <section className='py-20'>
         <Certifications resources={currentItems} />
         <PaginatedItems
           itemsPerPage={12}

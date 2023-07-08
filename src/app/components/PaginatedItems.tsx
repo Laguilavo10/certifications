@@ -50,7 +50,7 @@ export function PaginatedItems({ itemsPerPage, data, setCurrentItems, tab }: Pro
           breakLabel='...'
           breakClassName='page-item'
           breakLinkClassName='page-link'
-          containerClassName='bg-white flex p-2 m-auto max-w-fit rounded-md gap-3 bg-opacity-80 shadow-2xl'
+          containerClassName='bg-white flex p-2 m-auto max-w-fit rounded-md gap-3 bg-opacity-80 shadow-2xl  w-[200px] flex-col sm:flex-row'
           activeClassName='bg-orange-400'
           renderOnZeroPageCount={null}
         />
