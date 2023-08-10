@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.23.2",
+    "@nextui-org/react": "^2.0.9",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
@@ -16,6 +18,7 @@
     "cloudinary": "^1.35.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "framer-motion": "^10.15.1",
     "next": "13.4.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
