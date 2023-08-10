@@ -6,7 +6,7 @@ import { UIProvider } from './components/UIProvider'
 
 import Header from './components/Header'
 
-const poppins = Poppins({ weight: '500', subsets: ['latin'] })
+const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Certificados',
@@ -29,7 +29,7 @@ export default function RootLayout({
           href='/public/diploma.svg'
           type='image/x-icon'
         />
-        <body className={poppins.className + 'h-full w-full dark'}>
+        <body className={ `${poppins.className} h-full w-full dark max-w-7xl m-auto`}>
           <UIProvider>
             <Header />
             {children}
