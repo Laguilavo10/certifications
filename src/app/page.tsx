@@ -1,14 +1,15 @@
 import All from './components/All'
-import { getImages } from './utils/getImages'
+import { getImages } from './services/getImages'
 
 export default async function Home() {
-  const { resources } = await getImages()
+  // const { resources } = await getImages()
 
   return (
     <>
-      <main className='min-w-screen h-full min-h-screen w-full bg-image'>
+      uwu
+      {/* <main className='min-w-screen h-full min-h-screen w-full bg-image'>
         <All resources={resources}/>
-      </main>
+      </main> */}
     </>
   )
 }

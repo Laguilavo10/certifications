@@ -1,20 +1,20 @@
 'use client'
 import React from 'react'
-import { UserButton, useAuth, useUser } from '@clerk/nextjs'
+import { UserButton, auth, currentUser, useAuth, useUser } from '@clerk/nextjs'
 import { Button } from '@nextui-org/button'
 import Link from 'next/link'
 
 export default function Header() {
-  const { isSignedIn } = useAuth()
-  const { user } = useUser()
-
+  const { isSignedIn, user } = useUser()
+  
+  useAuth()
   return (
-    <header className='fixed top-0 z-20 w-full bg-black px-5 py-2 text-white backdrop-blur-[20px] left-0'>
-      <div className='flex w-full max-w-[1400px] justify-between m-auto'>
-        <Button color='primary'>Press me</Button>
+    <header className='fixed top-0 z-20 w-full bg-black/80 px-5 py-3  text-white left-0 backdrop-blur-lg'>
+      <div className='flex w-full max-w-8xl justify-between m-auto'>
+        <p className='text-2xl font-bold flex items-center'>My-Certifications</p>
         <div className='flex gap-2 justify-self-end'>
           {isSignedIn ? (
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center gap-4'>
               <span>{user?.firstName}</span>
               <UserButton afterSignOutUrl='/' />
             </div>
@@ -23,7 +23,7 @@ export default function Header() {
               <Button color='primary'>
                 <Link href='sign-in'>Sign In</Link>
               </Button>
-              <Button color='primary'>
+              <Button variant='light'>
                 <Link href='sign-up'>Sign Up</Link>
               </Button>
             </>

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require('@nextui-org/react')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
@@ -14,7 +15,13 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-      }
+      },
+      maxWidth: {
+        '8xl': '1400px',
+      },
+      colors: {
+        'primary': colors.orange[600]
+      } 
     }
   },
   darkMode: "class",

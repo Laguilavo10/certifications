@@ -3,8 +3,8 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { UIProvider } from './components/UIProvider'
-
 import Header from './components/Header'
+
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
@@ -29,7 +29,7 @@ export default function RootLayout({
           href='/public/diploma.svg'
           type='image/x-icon'
         />
-        <body className={ `${poppins.className} h-full w-full dark max-w-7xl m-auto`}>
+        <body className={ `${poppins.className} h-full w-full dark m-auto pt-12 bg-dark bg-black`}>
           <UIProvider>
             <Header />
             {children}
