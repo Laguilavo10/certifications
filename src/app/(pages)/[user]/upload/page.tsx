@@ -13,6 +13,7 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { tabs } from '../../../components/Tabs'
 import { numberToDate } from '@/app/utils/numberToDate'
+import { createSignature } from '@/app/services/createSignature'
 
 const url = 'https://api.cloudinary.com/v1_1/dyqdtw07b/image/upload'
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
@@ -23,7 +24,6 @@ interface FilesWithTitle extends File {
 export default function Upload() {
   const [files, setFiles] = useState<FilesWithTitle[]>([])
   const [loading, setloading] = useState(false)
-  console.log(files)
   const handleFiles = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target
     const filesArray = Array.prototype.slice.call(files) as FilesWithTitle[] // convert a FileList to File[]
@@ -38,19 +38,14 @@ export default function Upload() {
     evt: React.MouseEvent<HTMLButtonElement>
   ) => {
     evt.preventDefault()
-    // setloading(false)
     if (files?.length === 0) return
-
+    setloading(true)
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileName = file.title
       const folder = 'Pruebas'
-      const data = await fetch('/api/create-signature', {
-        method: 'POST',
-        body: JSON.stringify({ fileName, folder })
-      })
-      console.log(data)
-      const { signature, timestamp } = await data.json()
+
+      const { signature, timestamp } = await createSignature(fileName, folder)
 
       const formData = new FormData()
       formData.append('file', file)
@@ -60,7 +55,6 @@ export default function Upload() {
       formData.append('folder', `Certifications/${folder}`)
       formData.append('public_id', fileName)
       formData.append('format', 'jpg')
-
       try {
         const response = await fetch(url, {
           method: 'POST',
@@ -73,8 +67,9 @@ export default function Upload() {
       } catch (err) {
         console.log('err', err);
       }
-
     }
+    setloading(false)
+
   }
 
   const handleFileName = (

@@ -13,8 +13,6 @@ cloudinary.config({
 
 export async function POST(req: Request, res: Response) {
   const { fileName, folder } = await req.json()
-  console.log('hola')
-
   const timestamp = Math.round(new Date().getTime() / 1000)
   const signature = cloudinary.utils.api_sign_request(
     {
@@ -25,6 +23,5 @@ export async function POST(req: Request, res: Response) {
     },
     API_SECRET
   )
-  console.log({ timestamp, signature })
   return NextResponse.json({ timestamp, signature })
 }
