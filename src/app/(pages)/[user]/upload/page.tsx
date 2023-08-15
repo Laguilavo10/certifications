@@ -14,6 +14,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { tabs } from '../../../components/Tabs'
 import { numberToDate } from '@/app/utils/numberToDate'
 import { createSignature } from '@/app/services/createSignature'
+import { useUser } from '@clerk/nextjs'
+import { createFolderIfNotExist } from '@/app/services/createFolder'
 
 const url = 'https://api.cloudinary.com/v1_1/dyqdtw07b/image/upload'
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
@@ -24,6 +26,8 @@ interface FilesWithTitle extends File {
 export default function Upload() {
   const [files, setFiles] = useState<FilesWithTitle[]>([])
   const [loading, setloading] = useState(false)
+  const {user} = useUser()
+
   const handleFiles = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target
     const filesArray = Array.prototype.slice.call(files) as FilesWithTitle[] // convert a FileList to File[]
@@ -38,12 +42,17 @@ export default function Upload() {
     evt: React.MouseEvent<HTMLButtonElement>
   ) => {
     evt.preventDefault()
+
     if (files?.length === 0) return
+
     setloading(true)
+  
+    const folder = user?.primaryEmailAddress?.emailAddress ?? '' // folderName will be the emailAddress
+    await createFolderIfNotExist(folder)
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileName = file.title
-      const folder = 'Pruebas'
 
       const { signature, timestamp } = await createSignature(fileName, folder)
 
@@ -55,6 +64,7 @@ export default function Upload() {
       formData.append('folder', `Certifications/${folder}`)
       formData.append('public_id', fileName)
       formData.append('format', 'jpg')
+
       try {
         const response = await fetch(url, {
           method: 'POST',
@@ -69,7 +79,7 @@ export default function Upload() {
       }
     }
     setloading(false)
-
+    setFiles([])
   }
 
   const handleFileName = (
@@ -85,6 +95,8 @@ export default function Upload() {
     }) as FilesWithTitle[]
     setFiles(updateFileName)
   }
+
+
 
   return (
     <main className='mt-10 flex h-screen w-full text-white'>
@@ -116,7 +128,6 @@ export default function Upload() {
                         color='primary'
                         variant='underlined'
                         label='Certification'
-                        // defaultValue={file.title}
                         value={file.title}
                         onChange={(evt) => handleFileName(evt, index)}
                         description={`File: ${file.name}`}
