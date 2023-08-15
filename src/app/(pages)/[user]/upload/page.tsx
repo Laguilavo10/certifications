@@ -14,21 +14,82 @@ import { useEffect, useMemo, useState } from 'react'
 import { tabs } from '../../../components/Tabs'
 import { numberToDate } from '@/app/utils/numberToDate'
 
-export default function Upload() {
-  const [files, setFiles] = useState<File[] | null>(null)
-  const [loading, setloading] = useState(false)
+const url = 'https://api.cloudinary.com/v1_1/dyqdtw07b/image/upload'
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
 
+interface FilesWithTitle extends File {
+  title: string
+}
+export default function Upload() {
+  const [files, setFiles] = useState<FilesWithTitle[]>([])
+  const [loading, setloading] = useState(false)
+  console.log(files)
   const handleFiles = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target
-    const filesArray = Array.prototype.slice.call(files) // convert a FileList to File[]
-    setFiles(filesArray)
+    const filesArray = Array.prototype.slice.call(files) as FilesWithTitle[] // convert a FileList to File[]
+    const filesWithTitle = filesArray.map((file) => {
+      file.title ??= file.name?.replace(/\.[^.]+$/, '')
+      return file
+    })
+    setFiles(filesWithTitle)
   }
 
-  const submitCertifications = (evt: React.MouseEvent<HTMLButtonElement>)=>{
+  const submitCertifications = async (
+    evt: React.MouseEvent<HTMLButtonElement>
+  ) => {
     evt.preventDefault()
-    setloading(false)
+    // setloading(false)
+    if (files?.length === 0) return
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      const fileName = file.title
+      const folder = 'Pruebas'
+      const data = await fetch('/api/create-signature', {
+        method: 'POST',
+        body: JSON.stringify({ fileName, folder })
+      })
+      console.log(data)
+      const { signature, timestamp } = await data.json()
+
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('api_key', `${API_KEY}`)
+      formData.append('timestamp', `${timestamp}`)
+      formData.append('signature', signature)
+      formData.append('folder', `Certifications/${folder}`)
+      formData.append('public_id', fileName)
+      formData.append('format', 'jpg')
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: formData
+        });
+
+        const responseData = await response.json();
+        console.log(responseData);
+        console.log(`${i + 1} de ${files.length}`);
+      } catch (err) {
+        console.log('err', err);
+      }
+
+    }
   }
 
+  const handleFileName = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { value } = evt.target
+    const updateFileName = files?.map((file, i) => {
+      if (i === index) {
+        file.title = value
+      }
+      return file
+    }) as FilesWithTitle[]
+    setFiles(updateFileName)
+  }
 
   return (
     <main className='mt-10 flex h-screen w-full text-white'>
@@ -60,7 +121,9 @@ export default function Upload() {
                         color='primary'
                         variant='underlined'
                         label='Certification'
-                        defaultValue={file.name.replace(/\.[^/.]+$/, '')}
+                        // defaultValue={file.title}
+                        value={file.title}
+                        onChange={(evt) => handleFileName(evt, index)}
                         description={`File: ${file.name}`}
                         isRequired
                         classNames={{
