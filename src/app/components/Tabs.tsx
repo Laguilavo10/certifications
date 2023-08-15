@@ -1,6 +1,6 @@
 'use client'
 import { Tabs as TabContainer, Tab } from '@nextui-org/react'
-const tabs = ['Todos', 'SENA', 'Platzi', 'Otros']
+export const tabs = ['Todos', 'SENA', 'Platzi', 'Otros']
 interface Props {
   value: string
   handleValue: React.Dispatch<React.SetStateAction<string>>

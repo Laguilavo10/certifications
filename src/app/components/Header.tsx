@@ -7,7 +7,6 @@ import Link from 'next/link'
 export default function Header() {
   const { isSignedIn, user } = useUser()
   
-  useAuth()
   return (
     <header className='fixed top-0 z-20 w-full bg-black/80 px-5 py-3  text-white left-0 backdrop-blur-lg'>
       <div className='flex w-full max-w-8xl justify-between m-auto'>
