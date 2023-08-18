@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { UIProvider } from './components/UIProvider'
 import Header from './components/Header'
+import { Toaster } from 'sonner'
 
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
@@ -31,7 +32,7 @@ export default function RootLayout({
         />
         <body className={ `${poppins.className} h-full w-full dark m-auto bg-dark bg-black`}>
           <UIProvider>
-            <Header />  
+            <Header />
             {children}
           </UIProvider>
         </body>

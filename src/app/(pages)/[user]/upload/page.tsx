@@ -10,14 +10,14 @@ import {
   DropdownItem,
   Button
 } from '@nextui-org/react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createSignature } from '@/app/services/createSignature'
 import { useUser } from '@clerk/nextjs'
 import { createFolderIfNotExist } from '@/app/services/createFolder'
 import { connectDB } from '../../../db/connect'
 import CardUploadCertification from '@/app/components/CardUploadCertification'
 import { SpinnerIcon } from '@/app/assets/icons'
-
+import { toast, Toaster } from 'sonner'
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
 
 export interface FileWithTitle extends File {
@@ -32,12 +32,11 @@ export interface fileSubmitted {
   error: string
 }
 export default function Upload() {
-  const [files, setFiles] = useState<FileWithTitle[]>([])
-  const [loading, setloading] = useState(false)
-
-  const [filesSubmitted, setFilesSubmitted] = useState<fileSubmitted[]>([]);
-  
   const { user } = useUser()
+  const [files, setFiles] = useState<FileWithTitle[]>([])
+  const [filesSubmitted, setFilesSubmitted] = useState<fileSubmitted[]>([])
+  const [loading, setloading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFiles = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target
@@ -62,7 +61,8 @@ export default function Upload() {
 
     const emailAddress = user?.primaryEmailAddress?.emailAddress ?? '' // folderName will be the emailAddress
     await createFolderIfNotExist(emailAddress)
-
+    let countFilesSubmitedSucces = 0
+    let countFilesSubmitedError = 0
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileName = file.title
@@ -71,8 +71,6 @@ export default function Upload() {
         fileName,
         emailAddress
       )
-      console.log(emailAddress)
-      console.log(signature, timestamp)
 
       const formData = new FormData()
       formData.append('file', file)
@@ -87,19 +85,30 @@ export default function Upload() {
       formData.append('user', `${emailAddress}`)
 
       try {
-        const response : fileSubmitted = await fetch('/api/save-certification', {
+        const response: fileSubmitted = await fetch('/api/save-certification', {
           method: 'POST',
           body: formData
-        }).then(res=>res.json())
-        setFilesSubmitted(prev=>[...prev, response])
-
-      } catch (err : any) {
-        setFilesSubmitted(prev=>[...prev, err])
+        }).then((res) => res.json())
+        setFilesSubmitted((prev) => [...prev, response])
+        countFilesSubmitedSucces++
+      } catch (err: any) {
         console.log('err', err)
+        countFilesSubmitedError++
+        setFilesSubmitted((prev) => [...prev, err])
       }
     }
+
     setloading(false)
+    toast.success(
+      `${countFilesSubmitedSucces} of ${files?.length} Certifications uploaded successfully`
+    )
+    if (countFilesSubmitedError > 0) {
+      toast.error(
+        `${countFilesSubmitedError} of ${files?.length} Certifications has an error`
+      )
+    }
     setFiles([])
+    fileInputRef?.current?.form?.reset()
   }
 
   const updateValue = ({
@@ -121,20 +130,56 @@ export default function Upload() {
     setFiles(updateFile)
   }
 
+  useEffect(() => {
+    if (filesSubmitted.length !== files.length || filesSubmitted.length === 0)
+      return
+
+    const countFilesSubmitted = filesSubmitted.reduce(
+      (acc, curr) => (curr.submited ? acc + 1 : acc),
+      0
+    )
+    const countFilesErrorSubmitted = filesSubmitted.filter((file) => {
+      if (!file.submited) {
+        return file.idFile
+      }
+    })
+
+    toast.success(
+      `${countFilesSubmitted} of ${files?.length} Certifications uploaded successfully`
+    )
+    if (countFilesErrorSubmitted.length > 0) {
+      toast.error(
+        `${countFilesErrorSubmitted.length} of ${files?.length} Certifications has an error`,
+        {
+          description: `Error en los archivos ${countFilesErrorSubmitted.map(
+            (file) => file.idFile
+          )}`
+        }
+      )
+    }
+  }, [filesSubmitted])
+
   return (
     <main className='flex h-screen w-full text-white'>
+      <Toaster
+        position='bottom-right'
+        richColors
+        duration={5000}
+      />
+
       <Card className='m-auto max-h-[500px] min-h-[400px] w-full p-4 md:w-min'>
         <CardHeader className='flex-col items-start px-4 pb-0 pt-2'>
           <h4 className='text-large font-bold'>Upload your certifications</h4>
         </CardHeader>
         <CardBody className='py-2'>
-          <form className='m-auto flex h-full flex-col justify-between gap-4'>
+          <form className='flex h-max min-h-full flex-col justify-between gap-4'>
             <input
               type='file'
               multiple
               accept='image/*, .pdf'
               onChange={handleFiles}
               className='m-auto'
+              ref={fileInputRef}
             />
             <section className='flex h-full w-full flex-col gap-2 '>
               {files?.map((file, index) => (
@@ -152,7 +197,9 @@ export default function Upload() {
               color='primary'
               spinner={<SpinnerIcon />}
             >
-              {loading ? `Submitting ${filesSubmitted.length} of ${files?.length} files` : 'Submit'}
+              {loading
+                ? `Submitting ${filesSubmitted.length} of ${files?.length} files`
+                : 'Submit'}
             </Button>
           </form>
         </CardBody>
