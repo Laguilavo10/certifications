@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
     {
       name: String,
       fileName: String,
+      image: String,
       date: Date,
       entity: String,
       isImportant: Boolean
