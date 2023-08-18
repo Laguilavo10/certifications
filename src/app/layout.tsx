@@ -29,9 +29,9 @@ export default function RootLayout({
           href='/public/diploma.svg'
           type='image/x-icon'
         />
-        <body className={ `${poppins.className} h-full w-full dark m-auto pt-12 bg-dark bg-black`}>
+        <body className={ `${poppins.className} h-full w-full dark m-auto bg-dark bg-black`}>
           <UIProvider>
-            <Header />
+            <Header />  
             {children}
           </UIProvider>
         </body>
