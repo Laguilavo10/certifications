@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 
-export function LoadingSkeleton({
+export function LoadingSkeleton ({
   children
 }: {
   children: React.ReactElement<React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>>

@@ -4,7 +4,7 @@ export const InsertNewUser = async (email: string | undefined) => {
   if (email === undefined) return
   try {
     const newUser = new User({
-      email: email,
+      email,
       certifications: []
     })
     const user = await newUser.save()

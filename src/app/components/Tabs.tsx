@@ -6,7 +6,7 @@ interface Props {
   handleValue: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function Tabs({ value, handleValue }: Props) {
+export default function Tabs ({ value, handleValue }: Props) {
   const selectTab = (tabName: string | number) => {
     if (tabName === value) return // avoid re-redering
     handleValue(tabName as string)
@@ -14,7 +14,7 @@ export default function Tabs({ value, handleValue }: Props) {
   return (
     <TabContainer
       aria-label='Options'
-      onSelectionChange={(tab) => selectTab(tab)}
+      onSelectionChange={(tab) => { selectTab(tab) }}
       variant='bordered'
       size='lg'
       fullWidth={true}

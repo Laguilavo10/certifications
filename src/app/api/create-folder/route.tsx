@@ -25,18 +25,18 @@ interface ApiResponseFolder {
   rate_limit_remaining: number
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST (req: Request, res: Response) {
   const folder: ApiResponseFolder = await cloudinary.api.sub_folders(
     'Certifications'
   )
   const { nameFolder } = await req.json()
 
   const existFolder = folder.folders.some((folder) => folder.name === nameFolder)
-  console.log(nameFolder);
-  console.log(existFolder);
+  console.log(nameFolder)
+  console.log(existFolder)
   if (!existFolder) {
     const res = await cloudinary.api.create_folder(`Certifications/${nameFolder}`)
-      return NextResponse.json({ succes: res.success })
+    return NextResponse.json({ succes: res.success })
   }
   return NextResponse.json({ succes: true })
 }

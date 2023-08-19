@@ -40,8 +40,8 @@ export const FrameImage = ({
         className={`relative box-border flex h-full ${dimentions[aspectImage].mainContainer} rounded-md border-[4px] border-black bg-[#3d270b]`}>
         <div
           className='relative z-10 m-auto my-6 h-5/6 w-5/6 justify-center overflow-hidden rounded-md border-[4px] border-black transition-all duration-300 ease-in-out sm:hover:scale-110'
-          onMouseOver={() => setShowCover(true)}
-          onMouseOut={() => setShowCover(false)}>
+          onMouseOver={() => { setShowCover(true) }}
+          onMouseOut={() => { setShowCover(false) }}>
           {children}
           <div
             className={` 

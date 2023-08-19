@@ -1,7 +1,7 @@
 import { cloudinary } from '@/app/services/configCloudinary'
 import { NextResponse } from 'next/server'
 
-export async function POST(req: Request) {
+export async function POST (req: Request) {
   try {
     const { publicId } = await req.json()
     if (!publicId) {
@@ -17,7 +17,6 @@ export async function POST(req: Request) {
       success: true,
       message: `Archivo : ${publicId} eliminado correctamente`
     })
-  
   } catch (error) {
     console.error(error)
     return NextResponse.json(

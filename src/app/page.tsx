@@ -1,7 +1,7 @@
 import All from './components/All'
-import { getImages } from './services/getImages'
+import { getImages } from './services/getCertifications'
 
-export default async function Home() {
+export default async function Home () {
   // const { resources } = await getImages()
 
   return (

@@ -4,20 +4,18 @@ import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { UIProvider } from './components/UIProvider'
 import Header from './components/Header'
-import { Toaster } from 'sonner'
-
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Certificados',
-  description: 'Certifcados de Andres Laguilavo realcionados a el area T.I',
+  description: 'Certificados de Andres Laguilavo realcionados a el area T.I',
   icons: {
     icon: 'diploma.svg'
   }
 }
 
-export default function RootLayout({
+export default function RootLayout ({
   children
 }: {
   children: React.ReactNode
@@ -30,8 +28,12 @@ export default function RootLayout({
           href='/public/diploma.svg'
           type='image/x-icon'
         />
-        <body className={ `${poppins.className} h-full w-full dark m-auto bg-dark bg-black`}>
+        <body
+          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark`}
+        >
           <UIProvider>
+            {/*
+            // @ts-expect-error: Unreachable code error */}
             <Header />
             {children}
           </UIProvider>

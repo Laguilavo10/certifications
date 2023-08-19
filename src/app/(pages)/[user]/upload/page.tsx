@@ -18,6 +18,7 @@ import { connectDB } from '../../../db/connect'
 import CardUploadCertification from '@/app/components/CardUploadCertification'
 import { SpinnerIcon } from '@/app/assets/icons'
 import { toast, Toaster } from 'sonner'
+import Header from '@/app/components/Header'
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
 
 export interface FileWithTitle extends File {
@@ -31,7 +32,7 @@ export interface fileSubmitted {
   submited: boolean
   error: string
 }
-export default function Upload() {
+export default function Upload () {
   const { user } = useUser()
   const [files, setFiles] = useState<FileWithTitle[]>([])
   const [filesSubmitted, setFilesSubmitted] = useState<fileSubmitted[]>([])
@@ -88,7 +89,7 @@ export default function Upload() {
         const response: fileSubmitted = await fetch('/api/save-certification', {
           method: 'POST',
           body: formData
-        }).then((res) => res.json())
+        }).then(async (res) => await res.json())
         setFilesSubmitted((prev) => [...prev, response])
         countFilesSubmitedSucces++
       } catch (err: any) {
@@ -122,17 +123,16 @@ export default function Upload() {
   }) => {
     const updateFile = files?.map((file) => {
       if (file.name === fileName) {
-        //@ts-ignore
+        // @ts-expect-error
         file[property] = newValue
       }
       return file
-    }) as FileWithTitle[]
+    })
     setFiles(updateFile)
   }
 
   useEffect(() => {
-    if (filesSubmitted.length !== files.length || filesSubmitted.length === 0)
-      return
+    if (filesSubmitted.length !== files.length || filesSubmitted.length === 0) { return }
 
     const countFilesSubmitted = filesSubmitted.reduce(
       (acc, curr) => (curr.submited ? acc + 1 : acc),

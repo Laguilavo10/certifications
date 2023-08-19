@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server'
 import User from '../../db/models/user'
-import { FileWithTitle } from '@/app/(pages)/[user]/upload/page'
+import { type FileWithTitle } from '@/app/(pages)/[user]/upload/page'
 import { connectDB } from '@/app/db/connect'
 import { deleteFile } from '@/app/services/deleteFile'
 
 const URL = 'https://api.cloudinary.com/v1_1/dyqdtw07b/image/upload'
 
-export async function POST(req: Request, res: Response) {
+export async function POST (req: Request, res: Response) {
   const formData = await req.formData()
   const emailAddress = formData.get('user')
   const idFile = formData.get('public_id')
   try {
-
     const response = await fetch(URL, {
       method: 'POST',
       body: formData
@@ -25,11 +24,11 @@ export async function POST(req: Request, res: Response) {
       fileName: (formData.get('file') as FileWithTitle)?.name,
       date: new Date((formData.get('file') as FileWithTitle)?.lastModified),
       entity: formData.get('entity'),
-      isImportant: formData.get('important') === 'true' ? true : false,
+      isImportant: formData.get('important') === 'true',
       image: data.secure_url
     }
-    console.log(certification);
-    
+    console.log(certification)
+
     await connectDB()
     const updateUser = await User.findOneAndUpdate(
       {
@@ -46,7 +45,6 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json({ submited: true, idFile })
   } catch (error) {
-    return NextResponse.json({ submited: false, idFile, error})
+    return NextResponse.json({ submited: false, idFile, error })
   }
 }
-

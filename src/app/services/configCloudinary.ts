@@ -10,5 +10,4 @@ cloudinary.config({
   api_secret: API_SECRET
 })
 
-
-export {cloudinary}
+export { cloudinary }

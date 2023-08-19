@@ -6,15 +6,15 @@ interface Props {
   itemsPerPage: number
   data: any
   setCurrentItems: React.Dispatch<
-    React.SetStateAction<{
-      allItems: []
-      currentPage: []
-    }>
+  React.SetStateAction<{
+    allItems: []
+    currentPage: []
+  }>
   >
   tab: string
 }
 
-export function PaginatedItems({
+export function PaginatedItems ({
   itemsPerPage,
   data,
   setCurrentItems,
@@ -46,7 +46,9 @@ export function PaginatedItems({
   }
   return (
     <>
-      {data.length <= itemsPerPage ? null : (
+      {data.length <= itemsPerPage
+        ? null
+        : (
         <ReactPaginate
           nextLabel='Siguiente >'
           onPageChange={handlePageClick}
@@ -67,7 +69,7 @@ export function PaginatedItems({
           activeClassName='!bg-orange-400 text-black'
           renderOnZeroPageCount={null}
         />
-      )}
+          )}
     </>
   )
 }

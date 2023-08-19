@@ -5,7 +5,7 @@ const connection: any = {}
 const uri =
   'mongodb+srv://andres_laguilavo:Makita23@certifications.nbieyel.mongodb.net/?retryWrites=true&w=majority'
 
-export async function connectDB() {  
+export async function connectDB () {
   if (connection.isConnected) {
     console.log('already connected')
     return
@@ -18,12 +18,14 @@ export async function connectDB() {
     }
     await mongoose.disconnect()
   }
-  mongoose.connection.on('open', () => {console.log('conectado');
+  mongoose.connection.on('open', () => {
+    console.log('conectado')
   })
 
-  mongoose.connection.on('error', (err) => {console.log('error', err);
+  mongoose.connection.on('error', (err) => {
+    console.log('error', err)
   })
-  
+
   const db = await mongoose.connect(uri)
 
   connection.isConnected = db.connections[0].readyState
