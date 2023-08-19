@@ -17,9 +17,12 @@
   },
   "plugins": ["react"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
-    "space-before-function-paren": "off",
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-floating-promises":"off",
+    "@typescript-eslint/space-before-function-paren": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "react/react-in-jsx-scope": "off",
+    "space-before-function-paren": "off"
   }
 }

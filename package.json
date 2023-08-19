@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix" : "next lint --fix"
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
@@ -21,7 +21,7 @@
     "eslint-config-next": "13.4.1",
     "framer-motion": "^10.15.1",
     "mongoose": "^7.4.3",
-    "next": "13.4.1",
+    "next": "^13.4.19",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -39,6 +39,6 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "prettier-plugin-tailwindcss": "^0.2.8",
-    "typescript": "^5.1.6"
+    "typescript": "5.0.4"
   }
 }

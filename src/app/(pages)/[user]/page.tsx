@@ -1,27 +1,19 @@
-import All from '@/app/components/All'
+import Certifications from '@/app/components/Certifications'
 import { getCertifications } from '@/app/services/getCertifications'
-import React from 'react'
+import Link from 'next/link'
 
-export default async function User ({ params }: { params: { user: string } }) {
-  if (params.user !== 'laguilavo') {
-    return <h1>Perdedor</h1>
-  }
-
+export default async function User({ params }: { params: { user: string } }) {
   const resources = await getCertifications('lagui2003@gmail.com')
-  console.log('', resources)
-
+  console.log(resources)
   return (
-    <main className='m-auto h-full min-h-screen max-w-8xl pt-14'>
-      <div className='relative h-48'>
-        <h1 className='flex h-full items-center justify-center bg-gradient-to-r from-orange-600 to-white bg-clip-text text-center text-4xl  font-bold uppercase tracking-wider text-transparent sm:text-7xl'>
+    <main className='h-full min-h-screen  pt-14'>
+      <div className='relative h-48 max-w-8xl m-auto'>
+        <h1 className='flex flex-col h-full m-auto max-w-min items-center justify-center bg-gradient-to-r from-orange-600 to-white bg-clip-text text-center text-4xl  font-bold uppercase tracking-wider text-transparent sm:text-7xl'>
           Certificados
+          <small className='text-sm justify-end self-end'>of <Link className='border-b-2 hover:text-orange-600 hover:border-orange-600' href='/about'>Andres Laguilavo</Link></small>
         </h1>
       </div>
-      {/* <Certifications></Certifications> */}
-      {/* <All resources={resources} /> */}
-      {/* <div className='absolute -bottom-7 w-full '>
-          <Tabs value={tab} handleValue={setTabs} />
-        </div> */}
+      <Certifications resources={resources} />
     </main>
   )
 }

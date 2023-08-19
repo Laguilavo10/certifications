@@ -1,25 +1,26 @@
 'use client'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
+// import type { Certification } from './Certifications'
 
-interface Props {
+interface Props<T> {
   itemsPerPage: number
   data: any
   setCurrentItems: React.Dispatch<
   React.SetStateAction<{
-    allItems: []
-    currentPage: []
+    allItems: T[]
+    currentPage: T[]
   }>
   >
   tab: string
 }
 
-export function PaginatedItems ({
+export function PaginatedItems<T> ({
   itemsPerPage,
   data,
   setCurrentItems,
   tab
-}: Props) {
+}: Props<T>) {
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
 

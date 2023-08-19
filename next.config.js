@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["res.cloudinary.com"]
+    domains: ["res.cloudinary.com", "laguilavo-certifications.vercel.app"]
   },
   webpack: (config) => {
     config.experiments = { ...config.experiments, topLevelAwait: true };
