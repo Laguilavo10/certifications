@@ -29,7 +29,7 @@ export default function RootLayout ({
           type='image/x-icon'
         />
         <body
-          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark`}
+          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white`}
         >
           <UIProvider>
             {/*

@@ -8,8 +8,16 @@ import {
   DropdownTrigger
 } from '@nextui-org/react'
 
-export const DropdownTabs = ({ options }: { options: string[] }) => {
-  const [selectedKeys, setSelectedKeys] = useState(new Set(['entidad']))
+export const DropdownTabs = ({
+  options,
+  isDisabled = false,
+  initialValue
+}: {
+  options: string[]
+  isDisabled?: boolean
+  initialValue: string
+}) => {
+  const [selectedKeys, setSelectedKeys] = useState(new Set([initialValue]))
 
   const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(', ').replaceAll('_', ' '),
@@ -17,8 +25,8 @@ export const DropdownTabs = ({ options }: { options: string[] }) => {
   )
 
   return (
-    <Dropdown>
-      <DropdownTrigger>
+    <Dropdown isDisabled={true}>
+      <DropdownTrigger disabled={true}>
         <Button variant='bordered' className='capitalize' color='secondary'>
           {selectedValue}
         </Button>
@@ -28,7 +36,9 @@ export const DropdownTabs = ({ options }: { options: string[] }) => {
         variant='flat'
         selectionMode='single'
         selectedKeys={selectedKeys}
+        // @ts-expect-error : I dont Know why this is not working
         onSelectionChange={setSelectedKeys}
+        disabledKeys={isDisabled ? options : []}
       >
         {options.map((option) => (
           <DropdownItem key={option} className='text-white'>

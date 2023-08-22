@@ -1,10 +1,12 @@
 import Certifications from '@/app/components/Certifications'
 import { getCertifications } from '@/app/services/getCertifications'
+import { currentUser } from '@clerk/nextjs'
 import Link from 'next/link'
 
 export default async function User({ params }: { params: { user: string } }) {
+  const user = await currentUser()
+  console.log(user)
   const resources = await getCertifications('lagui2003@gmail.com')
-  console.log(resources)
   return (
     <main className='h-full min-h-screen  pt-14'>
       <div className='relative h-48 max-w-8xl m-auto'>

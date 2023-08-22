@@ -32,10 +32,9 @@ export async function POST (req: Request, res: Response) {
   const { nameFolder } = await req.json()
 
   const existFolder = folder.folders.some((folder) => folder.name === nameFolder)
-  console.log(nameFolder)
-  console.log(existFolder)
+
   if (!existFolder) {
-    const res = await cloudinary.api.create_folder(`Certifications/${nameFolder}`)
+    const res = await cloudinary.api.create_folder(`Certifications/${nameFolder as string}`)
     return NextResponse.json({ succes: res.success })
   }
   return NextResponse.json({ succes: true })

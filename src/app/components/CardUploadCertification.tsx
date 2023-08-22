@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import {
   Input,
   Card,
@@ -8,9 +7,9 @@ import {
 } from '@nextui-org/react'
 import { StarIcon } from '@heroicons/react/24/outline'
 import { DropdownTabs } from './DropdownTabs'
-import { type FileWithTitle } from '../(pages)/[user]/upload/page'
 import { numberToDate } from '../utils/numberToDate'
 import { tabs } from './Tabs'
+import type { FileWithTitle } from '../(pages)/dashboard/upload/page'
 
 interface Props {
   file: FileWithTitle
@@ -67,7 +66,7 @@ export default function CardUploadCertification ({
             description: 'truncate'
           }}
         />
-        <DropdownTabs options={tabs} />
+        <DropdownTabs options={tabs} initialValue='Entidad'/>
         <Input
           type='date'
           color='primary'
