@@ -8,7 +8,8 @@ const nextConfig = {
     return config;
   },
   experimental:{
-    serverComponentsExternalPackages: ["mongoose"]
+    serverComponentsExternalPackages: ["mongoose"],
+    serverActions: true
   }
 }
 

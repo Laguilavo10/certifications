@@ -6,7 +6,8 @@ export const createSignature = async (fileName: string, folder: string) => {
       method: 'POST',
       body: JSON.stringify({ fileName, folder })
     })
-    const { signature, timestamp } = await data.json()
+    const { signature, timestamp }: { signature: string, timestamp: number } =
+      await data.json()
     return { signature, timestamp }
   } catch (error) {
     console.error(error)

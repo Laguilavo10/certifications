@@ -5,6 +5,8 @@ import type { Certification } from '@/app/types/types'
 
 export default async function Dashboard() {
   const resources = await getCertifications('lagui2003@gmail.com')
+  console.log(resources)
+
   return (
     <main className='m-auto h-full min-h-screen max-w-8xl pt-14'>
       {/* <SearchBar

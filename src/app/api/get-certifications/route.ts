@@ -10,7 +10,8 @@ export async function GET(req: Request) {
     const user = await User.findOne({
       email
     })
-    await disconnectDB()
+    console.log(user)
+    // await disconnectDB()
     return NextResponse.json({ user })
   } catch (error) {
     console.error('Error fetching certifications:', error)
