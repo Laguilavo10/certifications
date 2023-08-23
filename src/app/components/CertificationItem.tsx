@@ -10,11 +10,11 @@ interface Props {
 }
 
 export function CertificationItem({ certification }: Props) {
-  const { name, image } = certification
+  const { name, image, aspectRatioImage } = certification
   return (
     <article className='relative flex h-[280px] w-full flex-col items-center justify-center rounded-md shadow-md md:h-[300px]'>
       <FrameImage
-        // aspectImage={image.aspect_ratio > 1 ? 'horizontal' : 'vertical'}
+        aspectImage={aspectRatioImage > 1 ? 'horizontal' : 'vertical'}
         titleCertification={name}
       >
         <ImageZoom>

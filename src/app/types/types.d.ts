@@ -6,4 +6,5 @@ export interface Certification {
   image: string
   isImportant: boolean
   name: string
+  aspectRatioImage: number
 }

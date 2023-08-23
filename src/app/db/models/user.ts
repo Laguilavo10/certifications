@@ -10,12 +10,13 @@ const userSchema = new mongoose.Schema({
       name: String,
       fileName: String,
       image: String,
+      aspectRatioImage: Number,
       date: Date,
       entity: String,
-      isImportant: Boolean,
-      entities: []
+      isImportant: Boolean
     }
-  ]
+  ],
+  entities: [{ type: String }]
 })
 
 const User = mongoose.models.User || mongoose.model('User', userSchema)

@@ -1,5 +1,5 @@
 'use client'
-import { PropsWithChildren, useState } from 'react'
+import { useState } from 'react'
 interface Props {
   children: React.ReactNode
   titleCertification: string
