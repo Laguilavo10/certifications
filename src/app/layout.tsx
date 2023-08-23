@@ -3,7 +3,6 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { UIProvider } from './components/UIProvider'
-import Header from './components/Header'
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
@@ -29,12 +28,9 @@ export default function RootLayout ({
           type='image/x-icon'
         />
         <body
-          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white`}
+          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white min-h-screen`}
         >
           <UIProvider>
-            {/*
-            // @ts-expect-error: Unreachable code error */}
-            <Header />
             {children}
           </UIProvider>
         </body>
