@@ -1,14 +1,14 @@
-import { connectDB, disconnectDB } from '@/app/db/connect'
+import { connectDB } from '@/app/db/connect'
 import User from '@/app/db/models/user'
 import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {
   const url = new URL(req.url)
-  const email = url.searchParams.get('email')
+  const username = url.searchParams.get('username')
   try {
     await connectDB()
     const user = await User.findOne({
-      email
+      username
     })
     console.log(user)
     // await disconnectDB()

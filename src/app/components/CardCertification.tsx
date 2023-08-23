@@ -129,7 +129,6 @@ export default function CardCertification({ certification }: Props) {
                 }}
               />
             </div>
-            {/* <button type='submit'>ssss</button> */}
           </CardBody>
         </Card>
       </form>
