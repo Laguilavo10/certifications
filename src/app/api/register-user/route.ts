@@ -1,0 +1,23 @@
+// import { connectDB } from '@/app/db/connect'
+import { connectDB } from '@/app/db/connect'
+import { InsertNewUser } from '@/app/services/InsertNewUser'
+import { NextResponse } from 'next/server'
+
+export async function POST(req: Request) {
+  const { data } = await req.json()
+  const { first_name: firstname, last_name: lastname } = data
+  const email = data.email_addresses[0].email_address
+  // console.log(data.email_addresses[0].email_address)
+  console.log(firstname, lastname)
+
+  try {
+    await connectDB()
+
+    const user = await InsertNewUser({ email, firstname, lastname })
+    console.log(user)
+    return NextResponse.json({ user })
+  } catch (error) {
+    console.error('Error saving user:', error)
+    throw error // Lanza la excepción para que pueda ser manejada más arriba en la cadena de llamadas
+  }
+}
