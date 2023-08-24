@@ -10,13 +10,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
 
 export default authMiddleware({
   publicRoutes: ['/', '/user/:user', '/api/get-certifications', '/user/:user/about'],
-  ignoredRoutes: ['/api/register-user'],
+  ignoredRoutes: ['/api/user'],
   afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url })
     }
     if (req.url === `${BASE_URL}/` && auth.userId) {
-      return NextResponse.redirect('http://localhost:3000/dashboard')
+      return NextResponse.redirect(`${BASE_URL}/dashboard`)
     }
   }
 })

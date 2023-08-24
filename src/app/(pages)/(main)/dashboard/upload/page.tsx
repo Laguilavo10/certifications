@@ -8,7 +8,7 @@ import CardUploadCertification from '@/app/components/CardUploadCertification'
 import { SpinnerIcon } from '@/app/assets/icons'
 import { toast, Toaster } from 'sonner'
 import CreateEntity from '@/app/components/CreateEntity'
-import { getCertifications } from '@/app/services/getCertifications'
+import { getData } from '@/app/services/getData'
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
 
@@ -153,13 +153,14 @@ export default function Upload() {
   useEffect(() => {
     ;(async () => {
       if (emailAddress === '') return
-      const data = await getCertifications({
-        email: emailAddress
+      const { entities } = await getData({
+        email: emailAddress,
+        propertiesToGet: ['entities']
       })
-      setTabs(data.entities)
+      setTabs(entities)
     })()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-  console.log(tabs)
 
   return (
     <main className='m-auto flex h-full min-h-screen max-w-8xl flex-col pt-14'>

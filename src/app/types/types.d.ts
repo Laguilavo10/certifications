@@ -8,3 +8,13 @@ export interface Certification {
   name: string
   aspectRatioImage: number
 }
+
+export interface UserType {
+  firstname: string
+  lastname: string
+  username: string
+  email: string
+  clerkId: string
+  certifications: Certification[]
+  entities: string[]
+}
