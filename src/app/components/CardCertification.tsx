@@ -7,7 +7,7 @@ import {
 import { Card, CardBody, Button, Input } from '@nextui-org/react'
 import { useState } from 'react'
 import { DropdownTabs } from './DropdownTabs'
-import { tabs } from './Tabs'
+// import { tabs } from './Tabs'
 import { Toaster, toast } from 'sonner'
 import type { Certification } from '../types/types'
 import { numberToDate } from '../utils/numberToDate'
@@ -17,9 +17,10 @@ import { useDropdown } from '../hooks/useDropdown'
 
 interface Props {
   certification: Certification
+  entities: string[]
 }
 
-export default function CardCertification({ certification }: Props) {
+export default function CardCertification({ certification, entities }: Props) {
   const [isEditable, setIsEditable] = useState(false)
   const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(certification.entity)
   const [certificationValue, setCertificationValue] =
@@ -107,7 +108,7 @@ export default function CardCertification({ certification }: Props) {
             <div className='flex w-max flex-row  items-center justify-end gap-4 self-end text-white'>
               <Toaster position='bottom-right' richColors duration={5000} />
               <DropdownTabs
-                options={tabs}
+                options={entities}
                 isDisabled={!isEditable}
                 selectedKeys={selectedKeys}
                 setSelectedKeys={setSelectedKeys}

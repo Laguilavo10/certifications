@@ -65,6 +65,8 @@ export default function Upload() {
         fileName,
         emailAddress
       )
+      // if file.entitie equals empty string use default 'otros'
+      const entitie = file.entity || 'otros'
 
       const formData = new FormData()
       formData.append('file', file)
@@ -74,7 +76,7 @@ export default function Upload() {
       formData.append('folder', `Certifications/${emailAddress}`)
       formData.append('public_id', fileName)
       formData.append('format', 'jpg')
-      formData.append('entity', file.entity)
+      formData.append('entity', entitie)
       formData.append('important', file.important.toString())
       formData.append('user', `${emailAddress}`)
 
@@ -159,7 +161,7 @@ export default function Upload() {
       })
       setTabs(entities)
     })()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (

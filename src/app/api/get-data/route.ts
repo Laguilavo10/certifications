@@ -7,8 +7,7 @@ export async function POST(req: Request) {
   const username = url.searchParams.get('username') ?? ''
   const email = url.searchParams.get('email') ?? ''
   const optionsWithComma = await req.text()
-  const options = optionsWithComma.replace(',', ' ')
-  console.log(options)
+  const options = optionsWithComma.replace(/,/g, ' ')
   try {
     await connectDB()
     const user = await User.findOne(

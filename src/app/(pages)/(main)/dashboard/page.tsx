@@ -9,7 +9,7 @@ export default async function Dashboard() {
   const user = await currentUser()
   const email = user?.emailAddresses[0]?.emailAddress
   if (!email) return
-  const resources = await getData({ email, propertiesToGet: ['username', 'certifications'] })
+  const resources = await getData({ email, propertiesToGet: ['username', 'certifications', 'entities'] })  
   return (
     <main className='m-auto h-full min-h-screen max-w-8xl pt-14 flex'>
       <section className='relative flex flex-col gap-10 px-5 py-10 min-h-max w-full'>
@@ -19,6 +19,7 @@ export default async function Dashboard() {
           <CardCertification
             key={certification._id}
             certification={certification}
+            entities={resources?.entities}
           />
         ))}
       </section>
