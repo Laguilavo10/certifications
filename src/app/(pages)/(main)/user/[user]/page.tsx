@@ -24,7 +24,7 @@ export default async function User({
           </small>
         </h1>
       </div>
-      <Certifications resources={resources?.certifications} />
+      <Certifications resources={resources?.certifications} entities={resources?.entities.reverse()}/>
     </main>
   )
 }

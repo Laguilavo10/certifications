@@ -8,9 +8,10 @@ import type { Certification } from '@/types/types'
 
 interface Props {
   resources: Certification[]
+  entities: string[]
 }
 
-export default function Certifications({ resources }: Props) {
+export default function Certifications({ resources, entities }: Props) {
   const { selectedTab, certifications, setSelectedTab, setCertifications } =
     useTabs(resources, 'Todos')
 
@@ -19,9 +20,9 @@ export default function Certifications({ resources }: Props) {
       <section className='bg-image min-h-full'>
         <div className='relative m-auto h-full max-w-8xl py-20'>
           <div className='absolute -top-7 left-0 w-full'>
-            <Tabs value={selectedTab} handleValue={setSelectedTab} />
+            <Tabs value={selectedTab} handleValue={setSelectedTab} tabsOptions={entities} />
           </div>
-            {resources.length === 0 && <EmptyState theme='dark'/>}
+            {resources.length === 0 && <EmptyState theme='light'/>}
           <div className=' m-auto grid w-4/5 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-center justify-center gap-4 gap-x-40 gap-y-20 p-14 md:w-full '>
             {certifications?.currentPage?.map(
               (certification, index: number) => (

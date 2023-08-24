@@ -2,7 +2,10 @@
 import { useState, useEffect } from 'react'
 import type { Certification } from '../types/types'
 
-const useTabs = (initialResources: Certification[], initialTab: string = 'Todos') => {
+const useTabs = (
+  initialResources: Certification[],
+  initialTab: string = 'Todos'
+) => {
   const [selectedTab, setSelectedTab] = useState(initialTab)
   const [certifications, setCertifications] = useState({
     allItems: initialResources,
@@ -18,8 +21,8 @@ const useTabs = (initialResources: Certification[], initialTab: string = 'Todos'
       return
     }
 
-    const filteredResources = initialResources.filter((certification) =>
-      certification.entity.includes(selectedTab)
+    const filteredResources = initialResources.filter(
+      (certification) => certification.entity === selectedTab.toLowerCase()
     )
 
     setCertifications({

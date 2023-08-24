@@ -4,7 +4,7 @@ export const getPublicCertifications = async (username: string) => {
   try {
     const response = await fetch(`${BASE_URL}/api/get-certifications?username=${username}`, {
       next: {
-        revalidate: 10000
+        revalidate: 1000
       }
     })
     const { user } = await response.json()

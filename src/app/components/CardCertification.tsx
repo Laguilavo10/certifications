@@ -21,9 +21,7 @@ interface Props {
 
 export default function CardCertification({ certification }: Props) {
   const [isEditable, setIsEditable] = useState(false)
-  const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(
-    certification.entity
-  )
+  const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(certification.entity)
   const [certificationValue, setCertificationValue] =
     useState<Certification>(certification)
 
