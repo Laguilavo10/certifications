@@ -7,12 +7,12 @@ interface Props {
   username: `${string}-${string}-${string}`
 }
 
-export default function ButtonsDashboard({ username }: Props) {
+export default function LinkToCertifications({ username }: Props) {
+  const classUrlDashboard = `md:after:content-['/user/${username}']`
   return (
-    <div className='flex w-full justify-end gap-5'>
+    <div className='flex w-full justify-end gap-5 be'>
       <Link href={`/user/${username}`} target='_blank'>
-        <Button endContent={<RedirectIcon className='h-5' />}>
-          {`/user/${username}`}
+        <Button endContent={<RedirectIcon className='h-5' />} className={classUrlDashboard}>
         </Button>
       </Link>
     </div>

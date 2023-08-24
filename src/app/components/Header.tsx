@@ -8,15 +8,15 @@ export default async function Header() {
   return (
     <header className='fixed left-0 top-0 z-20 w-full bg-black/80 px-5  py-3 text-white backdrop-blur-lg'>
       <div className='m-auto flex w-full max-w-8xl justify-between'>
-        <p className='flex items-center text-2xl font-bold'>
+        <p className=' hidden items-center text-2xl font-bold md:flex'>
           My-Certifications
         </p>
-        <div className='flex gap-2 justify-self-end'>
+        <div className='flex gap-2 justify-end w-full md:w-fit'>
           {user != null ? (
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-3 self-end justify-self-end '>
               <LinksHeader />
               <div className='flex items-center gap-4'>
-                <span>{user?.firstName}</span>
+                <span className='hidden md:flex'>{user?.firstName}</span>
                 <UserButton afterSignOutUrl='/' />
               </div>
             </div>
