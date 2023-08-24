@@ -1,15 +1,19 @@
 import { authMiddleware, redirectToSignIn } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
+import { BASE_URL } from './app/constant/baseUrl'
 // import { NextResponse } from 'next/server'
 
 // This example protects all routes including api/trpc routes
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/nextjs/middleware for more information about configuring your middleware
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
-
 export default authMiddleware({
-  publicRoutes: ['/', '/user/:user', '/user/:user/about', '/api/get-certifications'],
+  publicRoutes: [
+    '/',
+    '/user/:user',
+    '/user/:user/about',
+    '/api/get-certifications'
+  ],
   ignoredRoutes: ['/api/user'],
   afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {

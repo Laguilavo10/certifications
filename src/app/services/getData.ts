@@ -1,7 +1,6 @@
 import { auth } from '@clerk/nextjs'
 import type { UserType } from './../types/types.d'
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
+import { BASE_URL } from '../constant/baseUrl'
 
 interface BaseProps {
   propertiesToGet: Array<keyof UserType>

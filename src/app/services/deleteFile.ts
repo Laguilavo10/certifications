@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
+import { BASE_URL } from '../constant/baseUrl'
 
 export const deleteFile = async (publicIdFile: string | undefined) => {
   if (publicIdFile === undefined) return
