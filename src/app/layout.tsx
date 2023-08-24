@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     icon: 'diploma.svg'
   }
 }
+const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 export default function RootLayout ({
   children
@@ -20,7 +21,7 @@ export default function RootLayout ({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={clerkPubKey}>
       <html lang='en'>
         <link
           rel='shortcut icon'

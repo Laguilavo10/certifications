@@ -1,4 +1,6 @@
+import { auth } from '@clerk/nextjs'
 import type { UserType } from './../types/types.d'
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
 
 interface BaseProps {
@@ -28,10 +30,29 @@ export const getData = async ({ username, email, propertiesToGet }: Props) => {
     return 'No username or email provided'
   }
 
+  // verify if is called on server or client
+  if (typeof window === 'undefined') {
+    const user = auth()
+    const token = (await user.getToken()) as string
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        mode: 'cors'
+      },
+      body: propertiesToGet.toString()
+    }).then(async (res) => await res.json())
+
+    console.log(response)
+    return response?.user
+  }
+
   const response = await fetch(url, {
     method: 'POST',
     body: propertiesToGet.toString()
   }).then(async (res) => await res.json())
 
+  console.log(response)
   return response?.user
 }

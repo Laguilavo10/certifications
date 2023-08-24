@@ -8,11 +8,11 @@ interface Props {
 }
 
 export default function LinkToCertifications({ username }: Props) {
-  const classUrlDashboard = `md:after:content-['/user/${username}']`
   return (
-    <div className='flex w-full justify-end gap-5 be'>
+    <div className='be flex w-full justify-end gap-5'>
       <Link href={`/user/${username}`} target='_blank'>
-        <Button endContent={<RedirectIcon className='h-5' />} className={classUrlDashboard}>
+        <Button startContent={<RedirectIcon className='h-5' />}>
+          /user/{username}
         </Button>
       </Link>
     </div>

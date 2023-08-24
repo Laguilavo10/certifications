@@ -25,7 +25,7 @@ interface ApiResponseFolder {
   rate_limit_remaining: number
 }
 
-export async function POST (req: Request, res: Response) {
+export async function POST(req: Request, res: Response) {
   const folder: ApiResponseFolder = await cloudinary.api.sub_folders(
     'Certifications'
   )

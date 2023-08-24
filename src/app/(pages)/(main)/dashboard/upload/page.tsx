@@ -151,8 +151,8 @@ export default function Upload() {
   }, [filesSubmitted, files.length])
 
   useEffect(() => {
+    if (emailAddress === '') return
     ;(async () => {
-      if (emailAddress === '') return
       const { entities } = await getData({
         email: emailAddress,
         propertiesToGet: ['entities']

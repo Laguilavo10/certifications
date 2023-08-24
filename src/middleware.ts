@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server'
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? ''
 
 export default authMiddleware({
-  publicRoutes: ['/', '/user/:user', '/api/get-certifications', '/user/:user/about'],
+  publicRoutes: ['/', '/user/:user', '/user/:user/about', '/api/get-certifications'],
   ignoredRoutes: ['/api/user'],
   afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {
