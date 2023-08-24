@@ -21,6 +21,7 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-floating-promises":"off",
     "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "space-before-function-paren": "off",

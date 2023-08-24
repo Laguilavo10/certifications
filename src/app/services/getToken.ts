@@ -1,11 +1,11 @@
-import { BASE_URL } from '@/app/constant/baseUrl'
+// import { BASE_URL } from '@/app/constant/baseUrl'
 
-export const getToken = async () => {
-  const response = await fetch(`/api/get-auth`)
-  console.log(response)
+// export const getToken = async () => {
+//   const response = await fetch(`/api/get-auth`)
+//   console.log(response)
 
-  const data = await response.json()
-  console.log(data)
+//   const data = await response.json()
+//   console.log(data)
 
-  return data
-}
+//   return data
+// }

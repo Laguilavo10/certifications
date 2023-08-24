@@ -15,7 +15,7 @@ export async function POST (req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: `Archivo : ${publicId} eliminado correctamente`
+      message: `Archivo : ${publicId as string} eliminado correctamente`
     })
   } catch (error) {
     console.error(error)
