@@ -7,7 +7,7 @@ export default async function User({
 }: {
   params: { user: string }
 }) {
-  const resources = await getCertifications(username)
+  const resources = await getCertifications({ username })
 
   return (
     <main className='h-full min-h-screen  pt-14'>

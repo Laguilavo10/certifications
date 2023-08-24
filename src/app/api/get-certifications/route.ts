@@ -4,11 +4,13 @@ import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {
   const url = new URL(req.url)
-  const username = url.searchParams.get('username')
+  const username = url.searchParams.get('username') ?? ''
+  const email = url.searchParams.get('email') ?? ''
+  console.log(username, email)
   try {
     await connectDB()
     const user = await User.findOne({
-      username
+      $or: [{ username }, { email }]
     })
     console.log(user)
     // await disconnectDB()

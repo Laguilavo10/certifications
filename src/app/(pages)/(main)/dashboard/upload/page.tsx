@@ -7,6 +7,8 @@ import { createFolderIfNotExist } from '@/app/services/createFolder'
 import CardUploadCertification from '@/app/components/CardUploadCertification'
 import { SpinnerIcon } from '@/app/assets/icons'
 import { toast, Toaster } from 'sonner'
+import CreateEntity from '@/app/components/CreateEntity'
+import { getCertifications } from '@/app/services/getCertifications'
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY ?? ''
 
@@ -26,7 +28,10 @@ export default function Upload() {
   const [files, setFiles] = useState<FileWithTitle[]>([])
   const [filesSubmitted, setFilesSubmitted] = useState<fileSubmitted[]>([])
   const [loading, setloading] = useState(false)
+  const [tabs, setTabs] = useState([])
+
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const emailAddress = user?.primaryEmailAddress?.emailAddress ?? '' // folderName will be the emailAddress
 
   const handleFiles = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target
@@ -49,7 +54,6 @@ export default function Upload() {
 
     setloading(true)
 
-    const emailAddress = user?.primaryEmailAddress?.emailAddress ?? '' // folderName will be the emailAddress
     await createFolderIfNotExist(emailAddress)
     let countFilesSubmitedSucces = 0
     let countFilesSubmitedError = 0
@@ -146,10 +150,21 @@ export default function Upload() {
     }
   }, [filesSubmitted, files.length])
 
-  return (
-    <main className='flex h-screen w-full text-white'>
-      <Toaster position='bottom-right' richColors duration={5000} />
+  useEffect(() => {
+    ;(async () => {
+      if (emailAddress === '') return
+      const data = await getCertifications({
+        email: emailAddress
+      })
+      setTabs(data.entities)
+    })()
+  }, [user])
+  console.log(tabs)
 
+  return (
+    <main className='m-auto flex h-full min-h-screen max-w-8xl flex-col pt-14'>
+      <Toaster position='bottom-right' richColors duration={5000} />
+      <CreateEntity />
       <Card className='m-auto max-h-[500px] min-h-[400px] w-full p-4 md:w-min'>
         <CardHeader className='flex-col items-start px-4 pb-0 pt-2'>
           <h4 className='text-large font-bold'>Upload your certifications</h4>
@@ -171,6 +186,7 @@ export default function Upload() {
                   index={index}
                   updateValue={updateValue}
                   key={file.name}
+                  tabs={tabs}
                 />
               ))}
             </section>

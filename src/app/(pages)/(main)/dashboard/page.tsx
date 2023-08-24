@@ -10,7 +10,7 @@ export default async function Dashboard() {
   const email = user?.emailAddresses[0]?.emailAddress
   if (!email) return
   const { username } = await getUsername(email)
-  const resources = await getCertifications(username)
+  const resources = await getCertifications({ username })
   return (
     <main className='m-auto h-full min-h-screen max-w-8xl pt-14'>
       <section className='relative flex flex-col gap-10 px-5 py-10'>
