@@ -13,6 +13,7 @@ import type { Certification } from '../types/types'
 import { numberToDate } from '../utils/numberToDate'
 import { updateCertification } from '../actions/updateCertification'
 import DeleteCertificationButton from './DeleteCertificationButton'
+import { useDropdown } from '../hooks/useDropdown'
 
 interface Props {
   certification: Certification
@@ -20,7 +21,9 @@ interface Props {
 
 export default function CardCertification({ certification }: Props) {
   const [isEditable, setIsEditable] = useState(false)
-
+  const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(
+    certification.entity
+  )
   const [certificationValue, setCertificationValue] =
     useState<Certification>(certification)
 
@@ -99,7 +102,7 @@ export default function CardCertification({ certification }: Props) {
                     <PencilSquareIcon className='h-6' />
                   )}
                 </Button>
-                <DeleteCertificationButton certification={certification}/>
+                <DeleteCertificationButton certification={certification} />
               </div>
             </div>
 
@@ -107,8 +110,10 @@ export default function CardCertification({ certification }: Props) {
               <Toaster position='bottom-right' richColors duration={5000} />
               <DropdownTabs
                 options={tabs}
-                initialValue={certificationValue.entity}
                 isDisabled={!isEditable}
+                selectedKeys={selectedKeys}
+                setSelectedKeys={setSelectedKeys}
+                selectedValue={selectedValue}
               />
               <Input
                 type='date'

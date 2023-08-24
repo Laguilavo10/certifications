@@ -1,7 +1,6 @@
-import { Button } from '@nextui-org/button'
-import Link from 'next/link'
 import { currentUser, UserButton } from '@clerk/nextjs'
 import LinksHeader from './LinksHeader'
+import AuthButtons from './AuthButtons'
 
 export default async function Header() {
   const user = await currentUser()
@@ -21,14 +20,7 @@ export default async function Header() {
               </div>
             </div>
           ) : (
-            <>
-              <Link href='sign-in'>
-                <Button color='primary'>Sign In</Button>
-              </Link>
-              <Link href='sign-up'>
-                <Button variant='light'>Sign Up</Button>
-              </Link>
-            </>
+            <AuthButtons/>
           )}
         </div>
       </div>

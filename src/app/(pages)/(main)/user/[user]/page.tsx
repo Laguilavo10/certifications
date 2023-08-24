@@ -8,7 +8,6 @@ export default async function User({
   params: { user: string }
 }) {
   const resources = await getPublicCertifications(username)
-  console.log(resources)
   return (
     <main className='h-full min-h-screen  pt-14'>
       <div className='relative m-auto h-48 max-w-8xl'>
