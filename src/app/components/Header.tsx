@@ -11,7 +11,7 @@ export default async function Header() {
         <p className=' hidden items-center text-2xl font-bold md:flex'>
           My-Certifications
         </p>
-        <div className='flex gap-2 justify-end w-full md:w-fit'>
+        <div className='flex w-full justify-end gap-2 md:w-fit'>
           {user != null ? (
             <div className='flex items-center gap-3 self-end justify-self-end '>
               <LinksHeader />
@@ -22,12 +22,12 @@ export default async function Header() {
             </div>
           ) : (
             <>
-              <Button color='primary'>
-                <Link href='sign-in'>Sign In</Link>
-              </Button>
-              <Button variant='light'>
-                <Link href='sign-up'>Sign Up</Link>
-              </Button>
+              <Link href='sign-in'>
+                <Button color='primary'>Sign In</Button>
+              </Link>
+              <Link href='sign-up'>
+                <Button variant='light'>Sign Up</Button>
+              </Link>
             </>
           )}
         </div>

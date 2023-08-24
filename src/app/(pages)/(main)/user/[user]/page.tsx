@@ -1,5 +1,5 @@
 import Certifications from '@/app/components/Certifications'
-import { getCertifications } from '@/app/services/getCertifications'
+import { getPublicCertifications } from '@/app/services/getPublicCertifications'
 import Link from 'next/link'
 
 export default async function User({
@@ -7,8 +7,8 @@ export default async function User({
 }: {
   params: { user: string }
 }) {
-  const resources = await getCertifications({ username })
-
+  const resources = await getPublicCertifications(username)
+  console.log(resources)
   return (
     <main className='h-full min-h-screen  pt-14'>
       <div className='relative m-auto h-48 max-w-8xl'>
