@@ -19,7 +19,7 @@ export default function CreateEntity() {
 
   return (
     <>
-      <Button endContent={<PlusCircleIcon className='h-5' />} onPress={onOpen}>
+      <Button endContent={<PlusCircleIcon className='h-5' />} onPress={onOpen} className='mb-5 self-end justify-self-end mr-5'>
         Create Entity
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement='top-center'>

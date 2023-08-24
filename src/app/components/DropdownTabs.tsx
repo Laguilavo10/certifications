@@ -1,5 +1,4 @@
 'use client'
-import { useState, useMemo } from 'react'
 import {
   Button,
   Dropdown,
@@ -8,24 +7,26 @@ import {
   DropdownTrigger
 } from '@nextui-org/react'
 
+interface Props {
+  options: string[]
+  selectedKeys: Set<string>
+  setSelectedKeys: React.Dispatch<React.SetStateAction<Set<string>>>
+  selectedValue: string
+  isDisabled?: boolean
+}
+
+// To get selectedKeys, setSelectedKeys and selectedValue
+// use the customHook useDropdown
+
 export const DropdownTabs = ({
   options,
   isDisabled = false,
-  initialValue
-}: {
-  options: string[]
-  isDisabled?: boolean
-  initialValue: string
-}) => {
-  const [selectedKeys, setSelectedKeys] = useState(new Set([initialValue]))
-
-  const selectedValue = useMemo(
-    () => Array.from(selectedKeys).join(', ').replaceAll('_', ' '),
-    [selectedKeys]
-  )
-
+  selectedKeys,
+  setSelectedKeys,
+  selectedValue
+}: Props) => {
   return (
-    <Dropdown isDisabled={true}>
+    <Dropdown>
       <DropdownTrigger disabled={true}>
         <Button variant='bordered' className='capitalize' color='secondary'>
           {selectedValue}

@@ -1,22 +1,18 @@
 'use server'
 import User from '../db/models/user'
-import { connectDB, disconnectDB } from '../db/connect'
+import { connectDB } from '../db/connect'
 
 export async function registerEntity(nameEntity: string) {
-  console.log(nameEntity)
-
+  const entity = nameEntity.toLowerCase()
   await connectDB()
-  const newEntity = await User.findOneAndUpdate(
+  const newEntity = await User.updateOne(
     {
       email: 'lagui2003@gmail.com'
     },
     {
-      $upsert: {
-        entities: 'hola'
+      $addToSet: {
+        entities: entity
       }
-    },
-    {
-      upsert: true,
     }
   )
   console.log(newEntity)
