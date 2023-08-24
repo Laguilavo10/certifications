@@ -4,11 +4,15 @@ interface Props {
   email: string
   firstname: string
   lastname: string
+  clerkId: string
 }
-export const InsertNewUser = async ({ email, firstname, lastname }: Props) => {
-  // if (email === undefined) return
+export const InsertNewUser = async ({
+  email,
+  firstname,
+  lastname,
+  clerkId
+}: Props) => {
   const username = createUsername(firstname, lastname)
-  console.log(username)
 
   try {
     const newUser = new User({
@@ -16,7 +20,9 @@ export const InsertNewUser = async ({ email, firstname, lastname }: Props) => {
       firstname,
       lastname,
       username,
-      certifications: []
+      clerkId,
+      certifications: [],
+      entities: ['otros']
     })
     const user = await newUser.save()
     return user
