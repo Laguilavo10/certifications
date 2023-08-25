@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   const username = url.searchParams.get('username') ?? ''
   try {
     await connectDB()
-    const user = await User.findOne({ username }, 'certifications entities')
+    const user = await User.findOne({ username }, 'certifications entities firstname lastname')
     await disconnectDB()
     return NextResponse.json({ user }, { status: 200 })
   } catch (error) {
