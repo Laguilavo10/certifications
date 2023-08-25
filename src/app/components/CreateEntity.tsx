@@ -12,14 +12,27 @@ import {
 } from '@nextui-org/react'
 import { useState } from 'react'
 import { registerEntity } from '../actions/registerEntity'
+import { toast, Toaster } from 'sonner'
 
 export default function CreateEntity() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const [value, setValue] = useState('')
 
+  const submitEntity = async () => {
+    const entity = await registerEntity(value)
+    if (entity.modifiedCount === 1) {
+      toast.success('Entity created successfully')
+      setValue('')
+    }
+  }
   return (
     <>
-      <Button endContent={<PlusCircleIcon className='h-5' />} onPress={onOpen} className='mb-5 self-end justify-self-end mr-5'>
+      <Toaster position='bottom-right' richColors duration={5000} />
+      <Button
+        endContent={<PlusCircleIcon className='h-5' />}
+        onPress={onOpen}
+        className='mb-5 mr-5 self-end justify-self-end'
+      >
         Create Entity
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement='top-center'>
@@ -43,12 +56,7 @@ export default function CreateEntity() {
                 <Button color='danger' variant='light' onPress={onClose}>
                   Close
                 </Button>
-                <Button
-                  color='primary'
-                  onPress={() => {
-                    void registerEntity(value)
-                  }}
-                >
+                <Button color='primary' type='submit' onPress={submitEntity}>
                   Register
                 </Button>
               </ModalFooter>
@@ -56,6 +64,7 @@ export default function CreateEntity() {
           )}
         </ModalContent>
       </Modal>
+      {/* </form> */}
     </>
   )
 }
