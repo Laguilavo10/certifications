@@ -22,7 +22,7 @@ export default function Tabs ({ value, handleValue, tabsOptions }: Props) {
       color='primary'
       classNames={{
         base: 'm-auto flex w-3/6',
-        tabList: '!bg-black p-2',
+        tabList: '!bg-black p-2 overflow-auto',
         tabContent: 'text-white'
       }}
     >

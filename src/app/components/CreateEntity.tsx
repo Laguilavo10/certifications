@@ -56,7 +56,13 @@ export default function CreateEntity() {
                 <Button color='danger' variant='light' onPress={onClose}>
                   Close
                 </Button>
-                <Button color='primary' type='submit' onPress={submitEntity}>
+                <Button
+                  color='primary'
+                  type='submit'
+                  onPress={() => {
+                    void submitEntity()
+                  }}
+                >
                   Register
                 </Button>
               </ModalFooter>

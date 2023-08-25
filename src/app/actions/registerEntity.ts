@@ -6,7 +6,6 @@ import { auth } from '@clerk/nextjs'
 
 export async function registerEntity(nameEntity: string) {
   const user = auth()
-  console.log(user.userId)
   if (nameEntity === '') return
   const entity = nameEntity.toLowerCase()
   await connectDB()
@@ -20,7 +19,6 @@ export async function registerEntity(nameEntity: string) {
       }
     }
   )
-  console.log(newEntity)
   revalidatePath('/dashboard/upload')
   return newEntity
 }
