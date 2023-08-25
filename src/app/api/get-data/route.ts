@@ -1,4 +1,4 @@
-import { connectDB, disconnectDB } from '@/app/db/connect'
+import { connectDB } from '@/app/db/connect'
 import User from '@/app/db/models/user'
 import { NextResponse } from 'next/server'
 
@@ -16,7 +16,8 @@ export async function POST(req: Request) {
       },
       options
     )
-    await disconnectDB()
+    // await disconnectDB()
+    console.log(user)
     return NextResponse.json({ user })
   } catch (error) {
     return NextResponse.json({ error })

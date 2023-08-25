@@ -20,7 +20,7 @@ export default function CreateEntity() {
 
   const submitEntity = async () => {
     const entity = await registerEntity(value)
-    if (entity.modifiedCount === 1) {
+    if (entity?.modifiedCount === 1) {
       toast.success('Entity created successfully')
       setValue('')
     }
