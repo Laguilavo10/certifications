@@ -3,10 +3,9 @@ import { Input, Card, CardHeader, CardBody } from '@nextui-org/react'
 import { StarIcon } from '@heroicons/react/24/outline'
 import { DropdownTabs } from './DropdownTabs'
 import { numberToDate } from '../utils/numberToDate'
-// import type { FileWithTitle } from ''
 import { useDropdown } from '../hooks/useDropdown'
 import { useEffect } from 'react'
-import type { FileWithTitle } from './UploaderCard'
+import type { FileWithTitle } from '@/app/components/UploaderCard'
 
 interface Props {
   file: FileWithTitle

@@ -22,7 +22,7 @@ export default function Certifications({ resources, entities }: Props) {
           <div className='absolute -top-7 left-0 w-full'>
             <Tabs value={selectedTab} handleValue={setSelectedTab} tabsOptions={entities} />
           </div>
-            {resources.length === 0 && <EmptyState theme='light'/>}
+            {resources.length === 0 && <EmptyState theme='dark'/>}
           <div className=' m-auto grid w-4/5 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-center justify-center gap-4 gap-x-40 gap-y-20 p-14 md:w-full '>
             {certifications?.currentPage?.map(
               (certification, index: number) => (

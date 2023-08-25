@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import User from '../../db/models/user'
 import { connectDB } from '@/app/db/connect'
 import { deleteFile } from '@/app/services/deleteFile'
-import type { FileWithTitle } from '@/app/(pages)/(main)/dashboard/upload/page'
+import type { FileWithTitle } from '@/app/components/UploaderCard'
 
 const URL = 'https://api.cloudinary.com/v1_1/dyqdtw07b/image/upload'
 
