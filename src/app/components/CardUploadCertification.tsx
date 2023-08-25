@@ -94,8 +94,17 @@ export default function CardUploadCertification({
           color='primary'
           variant='bordered'
           label='Date'
-          defaultValue={numberToDate(file.lastModified)}
+          value={numberToDate(file.date)}
           isRequired
+          onChange={(evt) => {
+            // add one day more, i dont know why valueAsNumber is one day
+            const newValue = new Date(evt.target.valueAsNumber + 86400000)
+            updateValue({
+              newValue,
+              fileName: file.name,
+              property: 'date'
+            })
+          }}
           classNames={{
             base: 'w-min'
           }}

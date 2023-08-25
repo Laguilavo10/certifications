@@ -13,6 +13,7 @@ export interface FileWithTitle extends File {
   title: string
   important: boolean
   entity: string
+  date: Date
 }
 
 export interface fileSubmitted {
@@ -39,6 +40,7 @@ export default function UploaderCard({ emailAddress, entities }: Props) {
       file.title ??= file.name?.replace(/\.[^.]+$/, '')
       file.important ??= false
       file.entity ??= ''
+      file.date = new Date(file.lastModified)
       return file
     })
     setFiles(filesWithTitle)
@@ -59,7 +61,6 @@ export default function UploaderCard({ emailAddress, entities }: Props) {
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileName = file.title
-
       const { signature, timestamp } = await createSignature(
         fileName,
         emailAddress
@@ -78,6 +79,7 @@ export default function UploaderCard({ emailAddress, entities }: Props) {
       formData.append('entity', entitie)
       formData.append('important', file.important.toString())
       formData.append('user', `${emailAddress}`)
+      formData.append('date', `${file.date.toISOString()}`)
 
       try {
         const response: fileSubmitted = await fetch('/api/save-certification', {

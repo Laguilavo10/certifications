@@ -22,10 +22,12 @@ interface Props {
 
 export default function CardCertification({ certification, entities }: Props) {
   const [isEditable, setIsEditable] = useState(false)
-  const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(certification.entity)
+  const { selectedKeys, setSelectedKeys, selectedValue } = useDropdown(
+    certification.entity
+  )
+
   const [certificationValue, setCertificationValue] =
     useState<Certification>(certification)
-
   const update = async () => {
     const response = await updateCertification(certificationValue)
     if (response.modifiedCount > 0) {
@@ -120,7 +122,7 @@ export default function CardCertification({ certification, entities }: Props) {
                 variant='bordered'
                 label='Date'
                 isDisabled={!isEditable}
-                value={numberToDate(certificationValue.date)}
+                value={numberToDate(new Date(certificationValue.date))}
                 onChange={(evt) => {
                   setCertificationValue((prev) => ({
                     ...prev,

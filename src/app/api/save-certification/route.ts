@@ -16,13 +16,11 @@ export async function POST(req: Request, res: Response) {
       body: formData
     })
     const data = await response.json()
-
-    console.log(data)
-
+    const dateString = formData.get('date') as string
     const certification = {
       name: idFile,
       fileName: (formData.get('file') as FileWithTitle)?.name,
-      date: new Date((formData.get('file') as FileWithTitle)?.lastModified),
+      date: new Date(dateString),
       entity: formData.get('entity'),
       isImportant: formData.get('important') === 'true',
       image: data.secure_url,
