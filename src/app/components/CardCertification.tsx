@@ -5,7 +5,7 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline'
 import { Card, CardBody, Button, Input } from '@nextui-org/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DropdownTabs } from './DropdownTabs'
 // import { tabs } from './Tabs'
 import { Toaster, toast } from 'sonner'
@@ -34,6 +34,15 @@ export default function CardCertification({ certification, entities }: Props) {
       toast.success('Certificado actualizado correctamente')
     }
   }
+
+  useEffect(() => {
+    if (selectedValue === certification.entity) return
+    setCertificationValue((prev) => ({
+      ...prev,
+      entity: selectedValue
+    }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValue])
   return (
     <>
       <form
