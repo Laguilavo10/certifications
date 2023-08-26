@@ -40,6 +40,9 @@ export const getData = async ({ username, email, propertiesToGet }: Props) => {
         Authorization: `Bearer ${token}`,
         mode: 'cors'
       },
+      next: {
+        revalidate: 0
+      },
       body: propertiesToGet.toString()
     }).then(async (res) => await res.json())
 
@@ -49,6 +52,9 @@ export const getData = async ({ username, email, propertiesToGet }: Props) => {
 
   const response = await fetch(url, {
     method: 'POST',
+    next: {
+      revalidate: 0
+    },
     body: propertiesToGet.toString()
   }).then(async (res) => await res.json())
 
