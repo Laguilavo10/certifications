@@ -1,8 +1,8 @@
-# My-Certifications Gallery - Plataforma de Certificados en Línea
+# My-Certifications Gallery 
 
 
 
-My-Certifications Gallery es una plataforma  desarrollada para facilitar el almacenamiento y la exhibición de tus certificados de manera elegante y profesional.
+My-Certifications  es una plataforma desarrollada para facilitar el almacenamiento y la exhibición de tus certificados de manera elegante y profesional.
 
 ![My-Certifications Gallery](/public/image-my-certifications.png)
 
