@@ -30,10 +30,10 @@ export async function deleteCertification(certification: Certification) {
     }
   )
 
+  revalidatePath('/dashboard')
   if (fileDeleted?.modifiedCount === 1) {
     await deleteFile(`Certifications/${email}/${removeExtensionFile(certification.fileName)}`)
   }
 
-  revalidatePath('/dashboard')
   return fileDeleted
 }

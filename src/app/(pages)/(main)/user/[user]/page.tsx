@@ -1,6 +1,7 @@
 import Certifications from '@/app/components/Certifications'
 import { getPublicCertifications } from '@/app/services/getPublicCertifications'
 import type { UserType } from '@/app/types/types'
+import { sortCertifications } from '@/app/utils/sortCertifications'
 import Link from 'next/link'
 
 type PublicUser = Pick<UserType, 'firstname' | 'lastname' | 'certifications' | 'entities'>
@@ -11,6 +12,7 @@ export default async function User({
   params: { user: string }
 }) {
   const resources: PublicUser = await getPublicCertifications(username)
+  const certifications = sortCertifications(resources?.certifications)
   return (
     <main className='h-full min-h-screen  pt-14'>
       <div className='relative m-auto h-48 max-w-8xl'>
@@ -28,7 +30,7 @@ export default async function User({
         </h1>
       </div>
       <Certifications
-        resources={resources?.certifications}
+        resources={certifications}
         entities={resources?.entities.reverse()}
       />
     </main>

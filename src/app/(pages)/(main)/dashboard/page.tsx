@@ -4,6 +4,7 @@ import EmptyState from '@/app/components/EmptyState'
 import type { Certification } from '@/app/types/types'
 import { currentUser } from '@clerk/nextjs'
 import { getData } from '@/app/services/getData'
+import { sortCertifications } from '@/app/utils/sortCertifications'
 
 export default async function Dashboard() {
   const user = await currentUser()
@@ -13,12 +14,13 @@ export default async function Dashboard() {
     email,
     propertiesToGet: ['username', 'certifications', 'entities']
   })
+  const certifications = sortCertifications(resources?.certifications)
   return (
     <main className='m-auto flex h-full min-h-screen max-w-8xl pt-14'>
       <section className='relative flex min-h-max w-full flex-col gap-10 px-5 py-10'>
         <LinkToCertifications username={resources?.username} />
         {resources?.certifications.length === 0 && <EmptyState theme='light' />}
-        {resources?.certifications?.map((certification: Certification) => (
+        {certifications.map((certification: Certification) => (
           <CardCertification
             key={certification._id}
             certification={certification}
