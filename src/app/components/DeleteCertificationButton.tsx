@@ -11,12 +11,21 @@ import {
 import { TrashIcon } from '@heroicons/react/24/outline'
 import type { Certification } from '../types/types'
 import { deleteCertification } from '../actions/deleteCertification'
+import { toast } from 'sonner'
 
 interface Props {
   certification: Certification
 }
 export default function DeleteCertificationButton({ certification }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
+
+  const submitDelete = async (onClose: () => void) => {
+    const file = await deleteCertification(certification)
+    if (file?.modifiedCount === 1) {
+      toast.success('File remove successfully')
+      onClose()
+    }
+  }
 
   return (
     <>
@@ -46,7 +55,7 @@ export default function DeleteCertificationButton({ certification }: Props) {
                 <Button
                   color='danger'
                   onPress={() => {
-                    deleteCertification(certification)
+                    void submitDelete(onClose)
                   }}
                 >
                   Delete
