@@ -24,7 +24,7 @@ export default async function User({
               className='border-b-2 hover:border-orange-600 hover:text-orange-600'
               href={`/user/${username}/about`}
             > */}
-              {resources.firstname} {resources.lastname}
+              {resources?.firstname} {resources?.lastname}
             {/* </Link> */}
           </small>
         </h1>

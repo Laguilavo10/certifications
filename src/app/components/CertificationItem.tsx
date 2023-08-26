@@ -4,19 +4,21 @@ import { ImageZoom } from './ImageZoom'
 import { LoadingSkeleton } from './LoadingSkeleton'
 import type { Certification } from '@/types/types'
 import Image from 'next/image'
+import ImportantTag from './ImportantTag'
 
 interface Props {
   certification: Certification
 }
 
 export function CertificationItem({ certification }: Props) {
-  const { name, image, aspectRatioImage } = certification
+  const { name, image, aspectRatioImage, isImportant } = certification
   return (
     <article className='relative flex h-[280px] w-full flex-col items-center justify-center rounded-md shadow-md md:h-[300px]'>
       <FrameImage
         aspectImage={aspectRatioImage > 1 ? 'horizontal' : 'vertical'}
         titleCertification={name}
       >
+        {isImportant && <ImportantTag />}
         <ImageZoom>
           <LoadingSkeleton>
             <Image
