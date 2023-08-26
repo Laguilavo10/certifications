@@ -2,7 +2,7 @@ import Certifications from '@/app/components/Certifications'
 import { getPublicCertifications } from '@/app/services/getPublicCertifications'
 import type { UserType } from '@/app/types/types'
 import { sortCertifications } from '@/app/utils/sortCertifications'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 type PublicUser = Pick<UserType, 'firstname' | 'lastname' | 'certifications' | 'entities'>
 
