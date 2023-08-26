@@ -1,34 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My-Certifications Gallery - Plataforma de Certificados en Línea
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+My-Certifications Gallery es una plataforma  desarrollada para facilitar el almacenamiento y la exhibición de tus certificados de manera elegante y profesional.
+
+![My-Certifications Gallery](/public/image-my-certifications.png)
+
+
+## Características Destacadas
+
+- **Almacenamiento Seguro:** Tus certificados se cargan y almacenan de manera segura en la nube mediante Cloudinary, garantizando la protección de tu información.
+
+- **Diseño Profesional:** Diseño moderno y atractivo utilizando Tailwind CSS y NextUI, asegurando una experiencia visual placentera y adaptable.
+
+- **Autenticación Protegida:** Utilizamos Clerk para ofrecer una autenticación robusta y segura, manteniendo tus certificados y datos personales resguardados.
+
+
+
+## TechStack
+
+My-Certifications Gallery ha sido desarrollado utilizando las siguientes tecnologías:
+
+- **Next.js 13 con Server Actions:** Framework de React que ofrece características avanzadas como el rendimiento optimizado y server side rendering (SSR). Los Server Actions permiten ejecutar lógica del lado del servidor antes de que se envíe la página al cliente.
+
+- **Tailwind CSS:** Framework de diseño utilitario que facilita la creación de interfaces rápidas y personalizables mediante clases predefinidas.
+
+- **MongoDB:** Base de datos NoSQL que ofrece flexibilidad y escalabilidad para el almacenamiento y manejo de datos estructurados y no estructurados.
+
+- **Clerk:** Plataforma de autenticación y gestión de identidad que proporciona una capa de seguridad para la autenticación y el manejo de usuarios.
+
+- **Cloudinary:** Servicio de gestión y entrega de activos multimedia en la nube que te permite almacenar y entregar imágenes de manera eficiente.
+
+- **Next UI:** Catálogo de componentes reutilizables y preestilizados que facilitan el desarrollo de interfaces coherentes y atractivas.
+
+Estas tecnologías en conjunto permiten crear una plataforma robusta y eficiente para alojar y mostrar certificados en línea. Cada una cumple un papel fundamental en diferentes aspectos del funcionamiento de la aplicación.
+
+## Cómo Contribuir
+
+¡Nos emociona recibir tus contribuciones para mejorar My-Certifications Gallery! Si deseas contribuir, por favor sigue estos pasos:
+
+1. **Clona el Repositorio:** 
+```
+git clone https://github.com/tu-usuario/my-certifications.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Instala Dependencias:**
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Configura Variables de Entorno:** Crea un archivo .env.local en la raíz del proyecto para configurar las variables de entorno requeridas.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+4. **Inicia el Servidor de Desarrollo:**
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. **Crea una Nueva Rama:**
+```
+git checkout -b feature/nueva-funcionalidad
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Realiza Cambios:** Implementa tus cambios y guarda los archivos en tu rama.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+7. **Envía un Pull Request:** Sube tus cambios al repositorio remoto y crea un Pull Request describiendo tus contribuciones en detalle.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Reporte de Problemas y Errores (Issues)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Si encuentras algún problema, error o tienes alguna sugerencia para mejorar My-Certifications, te invito a abrir un Issue en este repositorio. Por favor, sigue los siguientes pasos:
+
+1. Crea un Nuevo Issue: Haz clic en la pestaña "Issues" en la parte superior del repositorio y luego en "New Issue". Describe claramente el problema que estás experimentando o la sugerencia que tienes.
+
+2. Proporciona Detalles: Proporciona toda la información relevante sobre el problema o la sugerencia. Incluye capturas de pantalla, si es necesario, y describe los pasos que llevaron al problema.
+
+
+
+¡Estare agradecido por tu contribución!
+
+[**Crea un Nuevo Issue**](https://github.com/Laguilavo10/certifications/issues)
+
+## Licencia
+
+My-Certifications Gallery se distribuye bajo la Licencia MIT. Eres libre de usar, modificar y distribuir este proyecto de acuerdo con los términos de la licencia.
+
+
+
