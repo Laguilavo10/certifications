@@ -32,6 +32,8 @@ export default function CardCertification({ certification, entities }: Props) {
     const response = await updateCertification(certificationValue)
     if (response.modifiedCount > 0) {
       toast.success('Certificado actualizado correctamente')
+    } else {
+      toast.error('Error al actualizar certificado')
     }
   }
 
