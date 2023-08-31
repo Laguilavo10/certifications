@@ -1,7 +1,8 @@
 'use client'
-import { Button } from '@nextui-org/react'
+import { Button, Snippet } from '@nextui-org/react'
 import { ArrowTopRightOnSquareIcon as RedirectIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { BASE_URL } from '../constant/baseUrl'
 
 interface Props {
   username: `${string}-${string}-${string}`
@@ -10,10 +11,20 @@ interface Props {
 export default function LinkToCertifications({ username }: Props) {
   return (
     <div className='be flex w-full justify-end gap-5'>
+        <Snippet
+          hideSymbol= {true}
+          codeString={`${BASE_URL}/user/${username}`}
+          tooltipProps={{
+            color: 'foreground',
+            content: 'Show your achievements',
+            placement: 'top',
+            closeDelay: 1
+          }}
+        >
+          {username}
+        </Snippet>
       <Link href={`/user/${username}`} target='_blank'>
-        <Button startContent={<RedirectIcon className='h-5' />}>
-          /user/{username}
-        </Button>
+        <Button startContent={<RedirectIcon className='h-5' />} isIconOnly />
       </Link>
     </div>
   )
