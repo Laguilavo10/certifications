@@ -26,7 +26,7 @@ export function CertificationItem({ certification }: Props) {
               height={1000}
               src={image}
               alt={`diploma ${name}`}
-              className='h-full w-full cursor-pointer'
+              className='h-full w-full cursor-pointer shadow-inner'
             />
           </LoadingSkeleton>
         </ImageZoom>
