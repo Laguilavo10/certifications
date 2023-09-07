@@ -10,19 +10,23 @@ export default function usePagination({
   countPerPage = 12
 }: Props) {
   const [currentPage, setCurrentPage] = useState(1)
+  const [filtered, setFiltered] = useState<Certification[]>([])
   const [resources, setResources] = useState<Certification[]>([])
 
   useEffect(() => {
+    const data = filtered.length === 0 ? initialResources : filtered
     const startIndex = (currentPage - 1) * countPerPage
     const endIndex = startIndex + countPerPage
-    const newResources = initialResources.slice(startIndex, endIndex)
+    const newResources = data.slice(startIndex, endIndex)
     setResources(newResources)
-  }, [currentPage])
+  }, [currentPage, filtered])
 
   return {
     resources,
     setResources,
     currentPage,
-    setCurrentPage
+    setCurrentPage,
+    filtered,
+    setFiltered
   }
 }

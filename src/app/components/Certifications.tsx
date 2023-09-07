@@ -2,9 +2,9 @@
 import { CertificationItem } from './CertificationItem'
 import Tabs from './Tabs'
 import EmptyState from '@/app/components/EmptyState'
-import { PaginatedItems } from './PaginatedItems'
 import useTabs from '../hooks/useTabs'
 import type { Certification } from '@/types/types'
+import Pagination from './Pagination'
 
 interface Props {
   resources: Certification[]
@@ -12,9 +12,16 @@ interface Props {
 }
 
 export default function Certifications({ resources, entities }: Props) {
-  const { selectedTab, certifications, setSelectedTab, setCertifications } =
+  const {
+    selectedTab,
+    setSelectedTab,
+    resources: certifications,
+    currentPage,
+    setCurrentPage,
+    countCertifications
+  } =
     useTabs(resources, 'Todos')
-
+  const availablePages = Math.ceil(countCertifications / 12)
   return (
     <>
       <section className='bg-image min-h-full'>
@@ -24,18 +31,15 @@ export default function Certifications({ resources, entities }: Props) {
           </div>
             {resources.length === 0 && <EmptyState theme='dark'/>}
           <div className=' m-auto grid w-4/5 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-center justify-center gap-4 gap-x-40 gap-y-20 p-14 md:w-full '>
-            {certifications?.currentPage?.map(
+            {certifications?.map(
               (certification, index: number) => (
                 <CertificationItem key={index} certification={certification} />
               )
             )}
           </div>
-          <PaginatedItems
-            setCurrentItems={setCertifications}
-            itemsPerPage={12}
-            data={certifications.allItems}
-            tab={selectedTab}
-          />
+          <div className='flex justify-center'>
+          <Pagination totalPages={availablePages} currentPage={currentPage} setCurrentPage={setCurrentPage} showNextPrevButtons/>
+          </div>
         </div>
       </section>
     </>

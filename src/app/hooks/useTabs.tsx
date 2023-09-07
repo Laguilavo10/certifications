@@ -1,41 +1,36 @@
 'use client'
 import { useState, useEffect } from 'react'
 import type { Certification } from '../types/types'
+import usePagination from './usePagination'
 
 const useTabs = (
   initialResources: Certification[],
   initialTab: string = 'Todos'
 ) => {
+  const { resources, currentPage, setCurrentPage, filtered, setFiltered } =
+    usePagination({ initialResources, countPerPage: 12 })
   const [selectedTab, setSelectedTab] = useState(initialTab)
-  const [certifications, setCertifications] = useState({
-    allItems: initialResources,
-    currentPage: initialResources.slice(0, 12)
-  })
 
   useEffect(() => {
+    setCurrentPage(1)
     if (selectedTab === 'Todos') {
-      setCertifications({
-        allItems: initialResources,
-        currentPage: initialResources.slice(0, 12)
-      })
+      setFiltered([])
       return
     }
 
     const filteredResources = initialResources.filter(
       (certification) => certification.entity === selectedTab.toLowerCase()
     )
-
-    setCertifications({
-      allItems: filteredResources,
-      currentPage: filteredResources.slice(0, 12)
-    })
-  }, [selectedTab, initialResources])
+    setFiltered(filteredResources)
+  }, [selectedTab])
 
   return {
     selectedTab,
-    certifications,
     setSelectedTab,
-    setCertifications
+    resources,
+    currentPage,
+    setCurrentPage,
+    countCertifications: filtered.length || initialResources.length
   }
 }
 
