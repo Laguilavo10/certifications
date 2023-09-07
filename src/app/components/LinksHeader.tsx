@@ -26,6 +26,7 @@ export default function LinksHeader() {
           color='secondary'
           isBlock
           target='_blank'
+          isDisabled = {username === ''}
         >
           My Gallery
         </Link>
