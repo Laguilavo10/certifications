@@ -1,10 +1,9 @@
 import LinkToCertifications from '@/app/components/LinkToCertifications'
-import CardCertification from '@/app/components/CardCertification'
 import EmptyState from '@/app/components/EmptyState'
-import type { Certification } from '@/app/types/types'
 import { currentUser } from '@clerk/nextjs'
 import { getData } from '@/app/services/getData'
 import { sortCertifications } from '@/app/utils/sortCertifications'
+import CertificationsDashboard from '@/app/components/CertificationsDashboard'
 
 export default async function Dashboard() {
   const user = await currentUser()
@@ -20,13 +19,7 @@ export default async function Dashboard() {
       <section className='relative flex min-h-max w-full flex-col gap-10 px-5 py-10'>
         <LinkToCertifications username={resources?.username} />
         {resources?.certifications.length === 0 && <EmptyState theme='light' />}
-        {certifications.map((certification: Certification) => (
-          <CardCertification
-            key={certification._id}
-            certification={certification}
-            entities={resources?.entities}
-          />
-        ))}
+        <CertificationsDashboard certifications={certifications} entities={resources?.entities} />
       </section>
     </main>
   )
