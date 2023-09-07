@@ -19,11 +19,19 @@ export default function CertificationsDashboard({
     initialResources: certifications,
     countPerPage: PER_PAGE
   })
-
-  const PagesAvailables = Math.ceil(certifications.length / PER_PAGE)
+  const totalCertifications = certifications.length
+  const PagesAvailables = Math.ceil(totalCertifications / PER_PAGE)
 
   return (
     <>
+      <div className='flex w-full flex-col items-end gap-1 '>
+        <Pagination
+          totalPages={PagesAvailables}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+        <small className='text-xs text-slate-600 italic'>Total Certifications : {totalCertifications}</small>
+      </div>
       {resources?.map((certification) => (
         <CardCertification
           key={certification._id}
@@ -31,11 +39,6 @@ export default function CertificationsDashboard({
           entities={entities}
         />
       ))}
-      <Pagination
-        totalPages={PagesAvailables}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </>
   )
 }
