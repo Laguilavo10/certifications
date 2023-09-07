@@ -1,7 +1,7 @@
 'use client'
-import { Button, Snippet } from '@nextui-org/react'
-import { ArrowTopRightOnSquareIcon as RedirectIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import { Snippet } from '@nextui-org/react'
+// import { ArrowTopRightOnSquareIcon as RedirectIcon } from '@heroicons/react/24/outline'
+// import Link from 'next/link'
 import { BASE_URL } from '../constant/baseUrl'
 
 interface Props {
@@ -23,9 +23,9 @@ export default function LinkToCertifications({ username }: Props) {
         >
           {username}
         </Snippet>
-      <Link href={`/user/${username}`} target='_blank'>
+      {/* <Link href={`/user/${username}`} target='_blank'>
         <Button startContent={<RedirectIcon className='h-5' />} isIconOnly />
-      </Link>
+      </Link> */}
     </div>
   )
 }

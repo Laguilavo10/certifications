@@ -13,6 +13,7 @@ export default async function User({
 }) {
   const resources: PublicUser = await getPublicCertifications(username)
   const certifications = sortCertifications(resources?.certifications)
+  const entities = resources?.entities.reverse()
   return (
     <main className='h-full min-h-screen  pt-14'>
       <div className='relative m-auto h-48 max-w-8xl'>
@@ -31,7 +32,7 @@ export default async function User({
       </div>
       <Certifications
         resources={certifications}
-        entities={resources?.entities.reverse()}
+        entities={entities}
       />
     </main>
   )

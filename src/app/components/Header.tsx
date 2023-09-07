@@ -5,6 +5,7 @@ import GithubButton from './GithubButton'
 
 export default async function Header() {
   const user = await currentUser()
+
   return (
     <header className='fixed left-0 top-0 z-20 w-full bg-black/80 px-5  py-3 text-white backdrop-blur-lg'>
       <div className='m-auto flex w-full max-w-8xl justify-between'>
