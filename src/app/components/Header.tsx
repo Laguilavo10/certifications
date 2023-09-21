@@ -6,12 +6,10 @@ import { getData } from '../services/getData'
 
 export default async function Header() {
   const user = await currentUser()
-  let username
-  if (user !== null) {
-    const email = user?.emailAddresses[0]?.emailAddress
-    const response = await getData({ email, propertiesToGet: ['username'] })
-    username = response?.username
-  }
+  const email = user?.emailAddresses[0]?.emailAddress as string
+  const response = await getData({ email, propertiesToGet: ['username'] })
+  const username = response?.username
+
   return (
     <header className='fixed left-0 top-0 z-20 w-full bg-black/80 px-5  py-3 text-white backdrop-blur-lg'>
       <div className='m-auto flex w-full max-w-8xl justify-between'>
