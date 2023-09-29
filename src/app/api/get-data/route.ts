@@ -8,22 +8,38 @@ export async function POST(req: Request) {
   const email = url.searchParams.get('email') ?? ''
   const optionsWithComma = await req.text()
   const options = optionsWithComma.replace(/,/g, ' ')
-  try {
-    await connectDB()
-    const user = await User.findOne(
-      {
-        $or: [{ username }, { email }]
-      },
-      options
-    )
-    // await disconnectDB()
+  let user = null
+  let retries = 0
+
+  while (user === null && retries < 5) {
+    try {
+      await connectDB()
+      user = await User.findOne(
+        {
+          $or: [{ username }, { email }]
+        },
+        options
+      )
+      // Si encontramos al usuario, salimos del bucle.
+      if (user) {
+        break
+      }
+    } catch (error) {
+      console.error('Error al buscar el usuario:', error)
+    }
+
+    // Esperar 1 segundo antes de volver a intentar.
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    retries++
+  }
+
+  if (user !== null) {
     console.log(user)
     return NextResponse.json({ user })
-  } catch (error) {
-    return NextResponse.json({ error })
+  } else {
+    console.error('El usuario no se encontró después de varios intentos.')
+    return NextResponse.json({
+      error: 'El usuario no se encontró después de varios intentos.'
+    })
   }
-}
-
-export async function GET(req: Request) {
-  return NextResponse.json({ hola: 'hola' })
 }

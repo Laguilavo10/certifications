@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import { UIProvider } from './components/UIProvider'
+import { Providers } from './components/Providers'
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
@@ -32,9 +32,9 @@ export default function RootLayout ({
         <body
           className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white min-h-screen`}
         >
-          <UIProvider>
+          <Providers>
             {children}
-          </UIProvider>
+          </Providers>
         </body>
       </html>
     </ClerkProvider>

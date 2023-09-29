@@ -4,6 +4,7 @@ import { BASE_URL } from '../constant/baseUrl'
 
 interface BaseProps {
   propertiesToGet: Array<keyof UserType>
+  timeToCache?: number
 }
 
 interface PropsWithUsername extends BaseProps {
@@ -19,7 +20,7 @@ interface PropsWithEmail extends BaseProps {
 type Props = PropsWithUsername | PropsWithEmail
 
 // Can retrieve data using either a username or an email. However, to avoid conflicts, it's better to use only one of them
-export const getData = async ({ username, email, propertiesToGet }: Props) => {
+export const getData = async ({ username, email, propertiesToGet, timeToCache = 0 }: Props) => {
   let url = BASE_URL
   if (username) {
     url += `/api/get-data?username=${username}`
@@ -41,7 +42,7 @@ export const getData = async ({ username, email, propertiesToGet }: Props) => {
         mode: 'cors'
       },
       next: {
-        revalidate: 0
+        revalidate: timeToCache
       },
       body: propertiesToGet.toString()
     }).then(async (res) => await res.json())
@@ -53,7 +54,7 @@ export const getData = async ({ username, email, propertiesToGet }: Props) => {
   const response = await fetch(url, {
     method: 'POST',
     next: {
-      revalidate: 0
+      revalidate: timeToCache
     },
     body: propertiesToGet.toString()
   }).then(async (res) => await res.json())

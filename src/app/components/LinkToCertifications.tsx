@@ -1,7 +1,5 @@
 'use client'
 import { Snippet } from '@nextui-org/react'
-// import { ArrowTopRightOnSquareIcon as RedirectIcon } from '@heroicons/react/24/outline'
-// import Link from 'next/link'
 import { BASE_URL } from '../constant/baseUrl'
 
 interface Props {
@@ -10,7 +8,7 @@ interface Props {
 
 export default function LinkToCertifications({ username }: Props) {
   return (
-    <div className='be flex w-full justify-end gap-5'>
+    <div className='flex justify-end w-full gap-5 be'>
         <Snippet
           hideSymbol= {true}
           codeString={`${BASE_URL}/user/${username}`}
@@ -23,9 +21,7 @@ export default function LinkToCertifications({ username }: Props) {
         >
           {username}
         </Snippet>
-      {/* <Link href={`/user/${username}`} target='_blank'>
-        <Button startContent={<RedirectIcon className='h-5' />} isIconOnly />
-      </Link> */}
+
     </div>
   )
 }

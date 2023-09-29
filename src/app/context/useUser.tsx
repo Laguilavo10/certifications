@@ -6,20 +6,14 @@ import {
   useState
 } from 'react'
 
-export interface UserData {
-  username: string
-  email: string
-}
+type Username = `${string}-${string}-${string}` | null
 
 interface userContext {
-  state: UserData
-  setState: React.Dispatch<React.SetStateAction<UserData>>
+  state: Username
+  setState: React.Dispatch<React.SetStateAction<Username>>
 }
 
-const INITIAL_STATE_VALUE: UserData = {
-  username: '',
-  email: ''
-}
+const INITIAL_STATE_VALUE: Username = null
 
 const DEFAULT_VALUE: userContext = {
   state: INITIAL_STATE_VALUE,
@@ -38,7 +32,7 @@ export function UserProvider({ children }: PropsWithChildren) {
   )
 }
 
-export const useUser = () => {
-  const { state: user, setState: setUser } = useContext(UserContext)
-  return { user, setUser }
+export const useUsername = () => {
+  const { state: username, setState: setUsername } = useContext(UserContext)
+  return { username, setUsername }
 }
