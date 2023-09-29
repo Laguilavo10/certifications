@@ -3,6 +3,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Providers } from './components/Providers'
+import { Footer } from './components/Footer'
 
 const poppins = Poppins({ weight: ['300', '500', '700'], subsets: ['latin'] })
 
@@ -30,11 +31,12 @@ export default function RootLayout ({
           type='image/x-icon'
         />
         <body
-          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white min-h-screen`}
+          className={`${poppins.className} bg-dark m-auto h-full w-full bg-black dark text-white min-h-screen overflow-x-hidden`}
         >
           <Providers>
             {children}
           </Providers>
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>
