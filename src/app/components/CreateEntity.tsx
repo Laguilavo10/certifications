@@ -31,7 +31,7 @@ export default function CreateEntity() {
       <Button
         endContent={<PlusCircleIcon className='h-5' />}
         onPress={onOpen}
-        className='mb-5 mr-5 self-end justify-self-end'
+        className='self-end my-5 mr-5 justify-self-end'
       >
         Create Entity
       </Button>

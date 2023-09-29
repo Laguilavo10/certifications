@@ -10,7 +10,7 @@ export default function LinksHeader({ username }: { username: string }) {
           href={`/user/${username}`}
           as={NextLink}
           underline='hover'
-          color='secondary'
+          // color='secondary'
           isBlock
           target='_blank'
           isDisabled={username === ''}
@@ -23,7 +23,7 @@ export default function LinksHeader({ username }: { username: string }) {
           href={'/dashboard'}
           as={NextLink}
           underline='hover'
-          color='secondary'
+          // color='secondary'
           isBlock
         >
           Dashboard
@@ -34,7 +34,7 @@ export default function LinksHeader({ username }: { username: string }) {
           href={'/dashboard/upload'}
           as={NextLink}
           underline='hover'
-          color='secondary'
+          // color='secondary'
           isBlock
         >
           Upload
