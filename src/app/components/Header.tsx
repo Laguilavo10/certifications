@@ -3,6 +3,7 @@ import LinksHeader from './LinksHeader'
 import AuthButtons from './AuthButtons'
 import GithubButton from './GithubButton'
 import { getData } from '../services/getData'
+import Link from 'next/link'
 
 export default async function Header() {
   const user = await currentUser()
@@ -14,9 +15,9 @@ export default async function Header() {
     <header className='fixed top-0 left-0 z-20 w-full px-5 py-3 text-white bg-black/80 backdrop-blur-lg'>
       <div className='flex justify-between w-full m-auto max-w-8xl'>
         <div className='flex gap-2'>
-          <p className='items-center hidden text-2xl font-bold md:flex'>
+          <Link className='items-center hidden text-2xl font-bold md:flex' href='/'>
             My-Certifications
-          </p>
+          </Link>
           <GithubButton />
         </div>
         <div className='flex justify-end w-full gap-2 md:w-fit'>
