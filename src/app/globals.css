@@ -43,5 +43,5 @@
 
 /* Estilo de la imagen inclinada hacia el fondo */
 .perspective img {
-  transform: rotateX(25deg); /* Inclinar hacia el fondo */
+  transform: rotateX(20deg); /* Inclinar hacia el fondo */
 }

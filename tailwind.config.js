@@ -21,9 +21,9 @@ module.exports = {
       },
       colors: {
         'primary': colors.orange[600]
-      } 
+      } ,
     }
   },
   darkMode: "class",
-  plugins: [nextui()]
+  plugins: [nextui(), require('tailwindcss-animated')]
 }
