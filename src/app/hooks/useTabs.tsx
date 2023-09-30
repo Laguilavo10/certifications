@@ -5,7 +5,7 @@ import usePagination from './usePagination'
 
 const useTabs = (
   initialResources: Certification[],
-  initialTab: string = 'Todos'
+  initialTab: string = 'All'
 ) => {
   const { resources, currentPage, setCurrentPage, filtered, setFiltered } =
     usePagination({ initialResources, countPerPage: 12 })
@@ -13,7 +13,7 @@ const useTabs = (
 
   useEffect(() => {
     setCurrentPage(1)
-    if (selectedTab === 'Todos') {
+    if (selectedTab === 'All') {
       setFiltered([])
       return
     }

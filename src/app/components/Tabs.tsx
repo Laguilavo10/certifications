@@ -11,7 +11,7 @@ export default function Tabs ({ value, handleValue, tabsOptions }: Props) {
     if (tabName === value) return // avoid re-redering
     handleValue(tabName as string)
   }
-  const tabs = ['Todos', ...tabsOptions]
+  const tabs = ['All', ...tabsOptions]
   return (
     <TabContainer
       aria-label='Options'

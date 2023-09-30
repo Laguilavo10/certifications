@@ -20,13 +20,13 @@ export default function Certifications({ resources, entities }: Props) {
     setCurrentPage,
     countCertifications
   } =
-    useTabs(resources, 'Todos')
+    useTabs(resources, 'All')
   const availablePages = Math.ceil(countCertifications / 12)
   return (
     <>
-      <section className='bg-image min-h-full'>
-        <div className='relative m-auto h-full max-w-8xl py-20'>
-          <div className='absolute -top-7 left-0 w-full'>
+      <section className='min-h-full bg-image'>
+        <div className='relative h-full py-20 m-auto max-w-8xl'>
+          <div className='absolute left-0 w-full -top-7'>
             <Tabs value={selectedTab} handleValue={setSelectedTab} tabsOptions={entities} />
           </div>
             {resources.length === 0 && <EmptyState theme='dark'/>}
