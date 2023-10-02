@@ -12,7 +12,7 @@ export const InsertNewUser = async ({
   lastname,
   clerkId
 }: Props) => {
-  const username = createUsername(firstname, lastname)
+  const username = createUsername(firstname ?? 'user', lastname)
 
   try {
     const newUser = new User({

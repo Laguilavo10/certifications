@@ -21,8 +21,7 @@ export async function POST(req: Request) {
       const user = await InsertNewUser({ email, firstname, lastname, clerkId })
       return NextResponse.json({ user }, { status: 200 })
     } catch (error) {
-      console.error('Error saving user:', error)
-      throw error
+      NextResponse.json({ error: `Error saving user ${error}` }, { status: 500 })
     }
   }
   if (user.type === 'user.deleted') {
@@ -35,8 +34,7 @@ export async function POST(req: Request) {
       console.log(user)
       return NextResponse.json({ user }, { status: 200 })
     } catch (error) {
-      console.error('Error deleting user:', error)
-      throw error
+      NextResponse.json({ error: `Error deleting user ${error}` }, { status: 500 })
     }
   }
 }
