@@ -40,7 +40,7 @@ export default async function Home() {
                 Sign up for an account
               </span>
               <span className='mt-2 text-white/70'>
-                Sign with your Google or Github account and get started
+                Sign with your Google account and get started
               </span>
             </div>
           </li>
