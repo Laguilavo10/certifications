@@ -37,8 +37,9 @@
 
 import mongoose from 'mongoose'
 
-const uri =
-  'mongodb+srv://andres_laguilavo:Makita23@certifications.nbieyel.mongodb.net/?retryWrites=true&w=majority'
+// const uri =
+//   'mongodb+srv://andres_laguilavo:Makita23@certifications.nbieyel.mongodb.net/?retryWrites=true&w=majority'
+const uri = process.env.NEXT_PUBLIC_MONGO_URI ?? ''
 
 const connection = mongoose.connection
 
