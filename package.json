@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.23.2",
+    "@clerk/nextjs": "^4.29.3",
     "@heroicons/react": "^2.0.18",
     "@nextui-org/react": "^2.0.9",
     "@types/node": "20.1.0",
